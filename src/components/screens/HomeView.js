@@ -28,7 +28,7 @@ class HomeView extends Component<{}> {
     return (
        <View style = {[styles.todayTempByHour]}>
          <View id="hour">
-           <Text style={[styles.white]}>{hour}</Text> 
+           <Text style={[styles.white, styles.todayTempByHourText]}>{hour}</Text> 
          </View>
 
          <View id="status">
@@ -36,13 +36,25 @@ class HomeView extends Component<{}> {
          </View>
 
          <View id="tempAtHours">
-           <Text style={[styles.white]} >{temp}</Text>
+           <Text style={[styles.white, styles.todayTempByHourText]} >{temp}°</Text>
          </View>
        </View>
     )
   }
 
- render() {
+  componentWillMount(){
+    console.log("Home component will mount")
+
+    this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA})
+  }
+
+  componentDidMount(){
+    console.log("Home component Did mount")
+  
+    console.log(JSON.stringify(this.props))
+  }
+
+   render() {
     return (
       <View style={styles.container}>
         <ImageBackground 
@@ -53,12 +65,14 @@ class HomeView extends Component<{}> {
           <View id="contentContainer" style={styles.contentContainer}>
             
             <View id="topView" style={styles.topView}>
-              <Text id="textCityName" style={styles.textCityName} >Ha Noi</Text>
+              <Text id="textCityName" style={styles.textCityName} >
+                {this.props.store.weatherState.city}
+              </Text>
               <Text id="textDescription"style={styles.textDescription}>
                 Mostly Cloudy
               </Text>
 
-              <Text id="temp" style={styles.textTemp}>19 C</Text>
+              <Text id="temp" style={styles.textTemp}>19°</Text>
             </View>
 
             <Divider style={{backgroundColor: "blue"}} />
@@ -70,8 +84,8 @@ class HomeView extends Component<{}> {
                 style={[styles.todayTempOverview]}>
 
                 <Text style={{color: "#ffffff", fontSize: 30 }}>Today</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>23</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>18</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>23°</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>18°</Text> 
               </View>
 
               <ScrollView 
@@ -149,7 +163,7 @@ const styles = StyleSheet.create({
   },
   
   textTemp: {
-    fontSize: 60,
+    fontSize: 80,
     color: '#ffffff',
     marginTop: 15,
   },
@@ -182,9 +196,11 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: 'space-between',
     alignItems: 'center',
-
   },
 
+  todayTempByHourText: {
+    fontSize: 20, 
+  }
 
 });
 
