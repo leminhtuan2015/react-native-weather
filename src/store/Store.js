@@ -2,16 +2,14 @@ import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from "redux-thunk"
 import createSagaMiddleware from 'redux-saga'
 
-import HomeReducer from '../reducers/HomeReducer'
-import DetailReducer from '../reducers/DetailReducer'
+import WeatherReducer from '../reducers/WeatherReducer'
 import NavigatorReducer from '../reducers/NavigatorReducer'
 
 import rootSaga from '../saga/Saga'
 
 const reducers = combineReducers({
- homeViewState: HomeReducer,
- detailViewState: DetailReducer,
- nav: NavigatorReducer,
+  weatherState: WeatherReducer,  // WeatherReducer is manage weatherState data object
+  nav: NavigatorReducer,
 });
 
 const sagaMiddleware = createSagaMiddleware()
