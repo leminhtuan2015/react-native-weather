@@ -32,7 +32,7 @@ class HomeView extends Component<{}> {
          </View>
 
          <View id="status">
-           {ImageManager("sunny")}
+           {ImageManager(image)}
          </View>
 
          <View id="tempAtHours">
@@ -80,19 +80,25 @@ class HomeView extends Component<{}> {
                 horizontal = {true}
                 showsHorizontalScrollIndicator={false} >
 
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
-                {this.hourTemp("1h", "../../resources/images/sunny.png", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "rainny", "23")}
+                {this.hourTemp("1h", "storm", "23")}
+                {this.hourTemp("1h", "cloudy", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+                {this.hourTemp("1h", "sunny", "23")}
+
               </ScrollView>
 
             </View>

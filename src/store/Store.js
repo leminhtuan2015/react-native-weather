@@ -6,7 +6,7 @@ import HomeReducer from '../reducers/HomeReducer'
 import DetailReducer from '../reducers/DetailReducer'
 import NavigatorReducer from '../reducers/NavigatorReducer'
 
-import rootSaga from '../sagas/Sagas'
+import rootSaga from '../saga/Saga'
 
 const reducers = combineReducers({
  homeViewState: HomeReducer,
