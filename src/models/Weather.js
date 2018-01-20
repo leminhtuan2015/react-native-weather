@@ -21,8 +21,31 @@ class Weather {
 
   toObject(jsonData) {
     console.log("toObject " + jsonData["name"])
+
     this.city = jsonData["name"]  
+    this.description = jsonData["weather"][0]["description"] 
+    this.temp = jsonData["main"]["temp"] - 273.15  
+    this.tempMax = jsonData["main"]["temp_max"] - 273.15  
+    this.tempMin = jsonData["main"]["temp_min"] - 273.15  
   }
+
+  today = () => {
+    return fetch(Weather.URL)
+      .then((response) => {return response.json()})
+      .then((responseJson) => {
+        console.log("state of weather:" + JSON.stringify(responseJson))
+
+        this.toObject(responseJson)
+        console.log("weather now: " + JSON.stringify(this))
+
+        return this
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+
 }
 
 export default Weather

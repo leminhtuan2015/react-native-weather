@@ -69,10 +69,10 @@ class HomeView extends Component<{}> {
                 {this.props.store.weatherState.city}
               </Text>
               <Text id="textDescription"style={styles.textDescription}>
-                Mostly Cloudy
+                {this.props.store.weatherState.description}
               </Text>
 
-              <Text id="temp" style={styles.textTemp}>19°</Text>
+              <Text id="temp" style={styles.textTemp}>{this.props.store.weatherState.temp}°</Text>
             </View>
 
             <Divider style={{backgroundColor: "blue"}} />
@@ -84,8 +84,8 @@ class HomeView extends Component<{}> {
                 style={[styles.todayTempOverview]}>
 
                 <Text style={{color: "#ffffff", fontSize: 30 }}>Today</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>23°</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>18°</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMax}°</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMin}°</Text> 
               </View>
 
               <ScrollView 

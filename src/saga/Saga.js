@@ -1,6 +1,9 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
+import * as ActionTypes from "../constants/ActionTypes"
+import Weather from "../models/Weather"
+
 export function* hello() {
   yield delay(1000)
   console.log('HELLO')
@@ -27,15 +30,24 @@ export function* filterUser(action){
   return data
 }
 
+export function* getWeatherData(action){
+  console.log("Get Weather Data")
+  let weather = new Weather()
+  let response = yield call(weather.today)
+
+  console.log("Get Weather Data ::: " + JSON.stringify(response))
+  yield put({ type: ActionTypes.SAVE_WEATHER_DATA,data: response })
+}
+
 // notice how we now only export the rootSaga
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
     // REGISTER actions
-    // // Wait for (every) SAVE_SCORE action
 
     yield takeEvery('HELLO', hello)
     yield takeEvery('BYE', bye)
     yield takeEvery('FILTER_USER', filterUser)
+    yield takeEvery(ActionTypes.GET_WEATHER_DATA, getWeatherData)
 }
 
 
