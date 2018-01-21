@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native-elements'
 import * as ActionTypes from "../../constants/ActionTypes"
+import Place from "../../models/Place"
 
 import {
   Platform,
@@ -8,8 +9,10 @@ import {
   Text,
   View,
   TouchableHighlight,
-  ScrollView
+  ScrollView,
+  ImageBackground, 
 } from 'react-native';
+
 
 class DetailView extends Component<{}> {
   state = {}
@@ -36,7 +39,7 @@ class DetailView extends Component<{}> {
     return (
       <TouchableHighlight 
         onPress={() => {this.onPressButton(place, countryCode, id)}}
-        underlayColor="white">
+        underlayColor="white" key={id}>
         <View id="item" style={styles.item}>
           <Text style={styles.itemText}>{place}</Text>
           <Text style={styles.itemText}>{temp}</Text>
@@ -45,17 +48,27 @@ class DetailView extends Component<{}> {
    )  
   }
 
+  placeViews = () => {
+    let places = Place.all() 
+
+    let views = places.map((place) => {
+      return this.itemView(place.city, place.countryCode, place.temp, place.id) 
+    })
+    return views 
+  }
 
   render() {
     return (
       <View id="container" style={styles.container}>
-        <ScrollView>
-          {this.itemView("Hanoi","vn", 20, 1)}
-          {this.itemView("Tokyo", "jp", 20, 2)}
-          {this.itemView("New York", "us", 20, 3)}
-          {this.itemView("London", "uk", 20, 4)}
-          {this.itemView("Danang", "vn", 20, 5)}
-        </ScrollView>
+        <ImageBackground 
+          source={require('../../resources/images/background_3.jpg')} 
+          style={styles.backgroundImage} >
+          <View id="contentContainer" style={styles.contentContainer} >
+          <ScrollView>
+            {this.placeViews()}
+          </ScrollView>
+          </View>
+        </ImageBackground> 
       </View>
    )
  
@@ -80,6 +93,17 @@ class DetailView extends Component<{}> {
     flexDirection: 'row',
     justifyContent:'space-between'
   },
+
+  backgroundImage: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
+
+  contentContainer: {
+    flex: 1,
+    marginTop: 50,
+  }, 
 
 })
 

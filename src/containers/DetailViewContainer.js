@@ -10,10 +10,8 @@ const mapStateToProps = (store) => ({
   store: store
 })
 
-// 'dispatch' is the action from <Provider store={Store}>
 const mapDispatchToProps = (dispatch) => ({
   getWeather: () => {
-    console.log("xxxxxx")
     dispatch({type: ActionTypes.GET_WEATHER_DATA, 
       data: {city: "French", countyCode: "fr"}})
   },

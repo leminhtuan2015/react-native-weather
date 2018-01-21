@@ -54,6 +54,7 @@ class Weather {
       })
       .catch((error) => {
         console.error(error);
+        return this
       });
   }
 
