@@ -8,10 +8,9 @@ const Navigator = StackNavigator(
   {
     HomeView: {
       screen: HomeViewContainer,
-      navigationOptions: {
-        headerTitle: '',
-        title: 'Title',
-        headerStyle: {
+      headerTitle: '',
+      title: 'Title',
+      headerStyle: {
         backgroundColor: 'transparent',
         position: 'absolute',
         height: 50,
@@ -20,8 +19,7 @@ const Navigator = StackNavigator(
         right: 0,
         borderBottomWidth: 0,
       },
-      headerTintColor: '#ffffff'
-      },
+      headerTintColor: '#ffffff',
     },
     DetailView: {
       screen: DetailViewContainer,
@@ -32,10 +30,11 @@ const Navigator = StackNavigator(
     EditView: {screen: EditViewContainer,},
   },
   {
-    headerMode: 'screen',
-    mode: 'card',
-    cardStyle: { backgroundColor: 'transparent' },
-    tintColor: '#ffffff',
+  // headerMode: 'screen',
+  // mode: 'card',
+  // cardStyle: { backgroundColor: 'transparent' },
+  // tintColor: '#ffffff',
+  // opacity:0.99,
   }
 );
 

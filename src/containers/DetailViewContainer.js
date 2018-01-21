@@ -12,11 +12,14 @@ const mapStateToProps = (store) => ({
 
 // 'dispatch' is the action from <Provider store={Store}>
 const mapDispatchToProps = (dispatch) => ({
-  increment: () => { dispatch({ type: 'INCREMENT' }) },
-  decrement: () => { dispatch({ type: 'DECREMENT' }) },
-  reset: () => { dispatch({ type: 'RESET' }) },
+  getWeather: () => {
+    console.log("xxxxxx")
+    dispatch({type: ActionTypes.GET_WEATHER_DATA, 
+      data: {city: "French", countyCode: "fr"}})
+  },
 })
 
-const DetailViewContainer = connect(mapStateToProps, mapDispatchToProps)(DetailView)
+//const DetailViewContainer = connect(mapStateToProps, mapDispatchToProps)(DetailView)
+const DetailViewContainer = connect(mapStateToProps)(DetailView)
 
 export default DetailViewContainer 

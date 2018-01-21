@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { List, ListItem, SearchBar, Divider} 
   from 'react-native-elements'
-import {ImageBackground, Image}
+import {
+  ImageBackground,
+  Image,
+  ActivityIndicator,
+}
   from "react-native"
+
+import {Button} from 'react-native';
 
 import * as ActionTypes from "../../constants/ActionTypes"
 import User from "../../models/User"
@@ -19,9 +25,42 @@ import {
 
 
 class HomeView extends Component<{}> {
+  static headerRight = null
+
+  state = {isSaving: false}
 
   constructor(props) {
     super(props)
+
+  }
+
+  static navigationOptions = ({navigation}) => {
+    const { params = {} } = navigation.state;
+		
+		this.headerRight = <Button title="Add"
+      onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
+   
+    return {
+      headerTitle: '',
+      title: 'Title',
+		  headerStyle: {
+				position: 'absolute',
+				backgroundColor: 'transparent',
+        height: 50,
+				borderBottomWidth: 0,
+				zIndex: 100,
+				top: 0,
+				left: 0,
+				right: 0
+			},
+			headerRight: this.headerRight
+		}
+	}
+
+  rightButtonOnPress = () => {
+    console.log("Right button Pressed") 
+
+    this.props.navigation.navigate('DetailView') 
   }
 
   hourTempForecast = () => {
@@ -69,12 +108,14 @@ class HomeView extends Component<{}> {
   componentWillMount(){
     console.log("Home component will mount")
 
-    this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA})
+    this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA, 
+      data: {city: "Hanoi", countyCode: "vn"}})
+    //this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA})
   }
 
   componentDidMount(){
     console.log("Home component Did mount")
-  
+    this.props.navigation.setParams({rightButtonOnPress: this.rightButtonOnPress}); 
     this.props.dispatch({type: "BYE"})
   }
 
@@ -133,6 +174,7 @@ class HomeView extends Component<{}> {
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: 'transparent',
     flex: 1,
   },
 

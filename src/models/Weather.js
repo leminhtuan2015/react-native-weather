@@ -5,6 +5,9 @@ class Weather {
   
   static URL = "http://api.openweathermap.org/data/2.5/weather?q=Hanoi,vn&appid=1f484364cbdbb2dc68c73f079df0a4c7"
 
+  static HOST = "http://api.openweathermap.org/data/2.5/weather"
+  static KEY = "1f484364cbdbb2dc68c73f079df0a4c7"
+
   constructor() {
     this.city = "--"
     this.description = "--"
@@ -24,13 +27,22 @@ class Weather {
 
     this.city = jsonData["name"]  
     this.description = jsonData["weather"][0]["description"] 
-    this.temp = jsonData["main"]["temp"] - 273.15  
-    this.tempMax = jsonData["main"]["temp_max"] - 273.15  
-    this.tempMin = jsonData["main"]["temp_min"] - 273.15  
+    this.temp = Math.round(jsonData["main"]["temp"] - 273.15)  
+    this.tempMax = Math.round(jsonData["main"]["temp_max"] - 273.15)  
+    this.tempMin = Math.round(jsonData["main"]["temp_min"] - 273.15)  
   }
 
-  today = () => {
-    return fetch(Weather.URL)
+  today = (city, countryCode) => {
+    console.log("Today : " + city + countryCode)
+    let url = Weather.URL
+
+    if(city && countryCode){
+      url = Weather.HOST + "?q=" + city + "," + countryCode  + "&" + "appid=" + Weather.KEY
+    }
+
+    console.log("URL : " + url)
+
+    return fetch(url)
       .then((response) => {return response.json()})
       .then((responseJson) => {
         console.log("state of weather:" + JSON.stringify(responseJson))

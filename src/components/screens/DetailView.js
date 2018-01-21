@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native-elements'
+import * as ActionTypes from "../../constants/ActionTypes"
 
 import {
   Platform,
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from 'react-native';
 
 class DetailView extends Component<{}> {
@@ -14,44 +16,47 @@ class DetailView extends Component<{}> {
  
   constructor(props) {
     super(props);
-    
-    console.log("--------------------")
-    console.log("DetailViewState:" + JSON.stringify(this.props))
-    console.log("--------------------")
   }
 
-  buttonPress = () => {
-    console.log("press")
-    this.props.navigation.goBack()
+  onPressButton = (place, countryCode, id) => {
+    console.log("press: " + id)
+
+    this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA, 
+      data: {city: place, countryCode: countryCode}})
+
+      this.props.navigation.goBack()
   }
 
   editButtonPress = () => {
     console.log("press")
     this.props.navigation.navigate('EditView') 
   }
- 
+
+  itemView = (place, countryCode, temp, id) => {
+    return (
+      <TouchableHighlight 
+        onPress={() => {this.onPressButton(place, countryCode, id)}}
+        underlayColor="white">
+        <View id="item" style={styles.item}>
+          <Text style={styles.itemText}>{place}</Text>
+          <Text style={styles.itemText}>{temp}</Text>
+        </View>
+      </TouchableHighlight>
+   )  
+  }
+
+
   render() {
     return (
-    <View style={styles.container}>
-     <Button
-       onPress={this.buttonPress}
-       color="#009688"
-       backgroundColor="#FFC107"
-       title='Back' />
-
-     <Text></Text>
-
-      <Button
-        raised
-        onPress={this.editButtonPress}
-        backgroundColor="#E41E63"
-        icon={{name: 'cached'}}
-        title='Edit' />
-
-      <View style={styles.container}>
-        <Text>{this.props.store.detailViewState.data.name}</Text>
+      <View id="container" style={styles.container}>
+        <ScrollView>
+          {this.itemView("Hanoi","vn", 20, 1)}
+          {this.itemView("Tokyo", "jp", 20, 2)}
+          {this.itemView("New York", "us", 20, 3)}
+          {this.itemView("London", "uk", 20, 4)}
+          {this.itemView("Danang", "vn", 20, 5)}
+        </ScrollView>
       </View>
-    </View>
    )
  
   }
@@ -61,15 +66,21 @@ class DetailView extends Component<{}> {
   container: {
     flex: 1,
     justifyContent: 'flex-start',
-    paddingHorizontal: 30,
-    paddingTop: 20
   },
-  button: {
-    alignItems: 'center',
-    padding: 10,
-    marginTop: 10,
 
+  itemText: {
+    color: "#fff",
+    fontSize: 40,
   },
+
+  item: {
+    marginTop: 20,
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row',
+    justifyContent:'space-between'
+  },
+
 })
 
 export default DetailView

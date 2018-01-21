@@ -33,12 +33,14 @@ export function* filterUser(action){
 }
 
 export function* getWeatherData(action){
-  console.log("Get Weather Data")
+  let {data} = action
+
+  console.log("Get Weather Data :" + JSON.stringify(data))
   let weather = new Weather()
-  let response = yield call(weather.today)
+  let response = yield call(weather.today, data.city, data.countryCode)
 
   console.log("Get Weather Data ::: " + JSON.stringify(response))
-  yield put({ type: ActionTypes.SAVE_WEATHER_DATA,data: response })
+  yield put({ type: ActionTypes.SAVE_WEATHER_DATA, data: response })
 }
 
 // notice how we now only export the rootSaga
