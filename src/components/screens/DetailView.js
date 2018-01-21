@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native-elements'
 import * as ActionTypes from "../../constants/ActionTypes"
-import Place from "../../models/Place"
 
 import {
   Platform,
@@ -49,7 +48,7 @@ class DetailView extends Component<{}> {
   }
 
   placeViews = () => {
-    let places = Place.all() 
+    let places = this.props.places 
 
     let views = places.map((place) => {
       return this.itemView(place.city, place.countryCode, place.temp, place.id) 

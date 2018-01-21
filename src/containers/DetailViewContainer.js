@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
+import Place from "../models/Place"
 import DetailView from '../components/screens/DetailView.js';
+
+let places = Place.all()
 
 // 'store' is the object from <Provider store={Store}>
 // Provider is given the store as a prop
 const mapStateToProps = (store) => ({
-  store: store
+  store: store,
+  places: places
 })
 
 const mapDispatchToProps = (dispatch) => ({

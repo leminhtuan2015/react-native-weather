@@ -3,12 +3,14 @@ import thunk from "redux-thunk"
 import createSagaMiddleware from 'redux-saga'
 
 import WeatherReducer from '../reducers/WeatherReducer'
+import PlaceReducer from '../reducers/PlaceReducer'
 import NavigatorReducer from '../reducers/NavigatorReducer'
 
 import rootSaga from '../saga/Saga'
 
 const reducers = combineReducers({
   weatherState: WeatherReducer,  // WeatherReducer is manage weatherState data object
+  PlaceState: PlaceReducer,  
   nav: NavigatorReducer,
 });
 

@@ -11,7 +11,6 @@ import {
 import {Button} from 'react-native';
 
 import * as ActionTypes from "../../constants/ActionTypes"
-import User from "../../models/User"
 import ImageManager from "../../utils/ImageManager"
 
 import {

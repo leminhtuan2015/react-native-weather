@@ -1,10 +1,9 @@
 import * as ActionTypes from "../constants/ActionTypes"
-import Weather from "../models/Weather"
+import Place from "../models/Place"
 
+let place = new Place()
 
-let weather = new Weather() 
-
-export const WeatherReducer = (state = weather, action) => {
+export const PlaceReducer = (state = place, action) => {
   const {type, data} = action 
 
   switch (type) {
@@ -17,7 +16,7 @@ export const WeatherReducer = (state = weather, action) => {
   }
 }
 
-export default WeatherReducer
+export default PlaceReducer
 
 
 

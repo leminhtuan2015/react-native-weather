@@ -10,11 +10,11 @@ class Place {
 
   static all = () => {
   
-    let place1 = new Place(1, "Hanoi", "vn", 20)
-    let place2 = new Place(2, "Danang", "vn", 20)
-    let place3 = new Place(3, "London", "uk", 20)
-    let place4 = new Place(4, "New York", "us", 20)
-    let place5 = new Place(5, "Tokyo", "jp", 20)
+    let place1 = new Place(1, "Hanoi", "vn", "--")
+    let place2 = new Place(2, "Danang", "vn", "--")
+    let place3 = new Place(3, "London", "uk", "--")
+    let place4 = new Place(4, "New York", "us", "--")
+    let place5 = new Place(5, "Tokyo", "jp", "--")
 
     let places = [place1, place2, place3, place4, place5] 
     
