@@ -12,6 +12,8 @@ export function* hello() {
 
 export function* bye(){
   console.log("BYE")
+  yield
+  console.log("bye 123")
 }
 
 export function* filterUser(action){

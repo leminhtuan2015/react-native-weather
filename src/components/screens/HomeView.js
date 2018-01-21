@@ -24,9 +24,33 @@ class HomeView extends Component<{}> {
     super(props)
   }
 
-  hourTemp = (hour, image, temp) => {
+  hourTempForecast = () => {
+    let array = [
+      {h: 1, image: "rainny"},
+      {h: 2, image: "sunny"},
+      {h: 3, image: "rainny"},
+      {h: 4, image: "sunny"},
+      {h: 5, image: "rainny"},
+      {h: 6, image: "sunny"},
+      {h: 7, image: "rainny"},
+      {h: 8, image: "sunny"},
+      {h: 9, image: "rainny"},
+      {h: 10, image: "rainny"},
+      {h: 11, image: "rainny"},
+      {h: 12, image: "rainny"},
+      {h: 13, image: "rainny"},
+    ]
+    
+    let view = array.map((data) => {
+      return this.hourTemp(data.h + "h", data.image, "23", data.h)
+    })
+
+    return view
+  }
+
+  hourTemp = (hour, image, temp, key) => {
     return (
-       <View style = {[styles.todayTempByHour]}>
+       <View style = {[styles.todayTempByHour]} key={key} >
          <View id="hour">
            <Text style={[styles.white, styles.todayTempByHourText]}>{hour}</Text> 
          </View>
@@ -51,7 +75,7 @@ class HomeView extends Component<{}> {
   componentDidMount(){
     console.log("Home component Did mount")
   
-    console.log(JSON.stringify(this.props))
+    this.props.dispatch({type: "BYE"})
   }
 
    render() {
@@ -84,8 +108,8 @@ class HomeView extends Component<{}> {
                 style={[styles.todayTempOverview]}>
 
                 <Text style={{color: "#ffffff", fontSize: 30 }}>Today</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMax}°</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMin}°</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMax}°⤒</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMin}°⤓</Text> 
               </View>
 
               <ScrollView 
@@ -94,25 +118,7 @@ class HomeView extends Component<{}> {
                 horizontal = {true}
                 showsHorizontalScrollIndicator={false} >
 
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "rainny", "23")}
-                {this.hourTemp("1h", "storm", "23")}
-                {this.hourTemp("1h", "cloudy", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-                {this.hourTemp("1h", "sunny", "23")}
-
+                {this.hourTempForecast()}
               </ScrollView>
 
             </View>

@@ -9,7 +9,7 @@ const Navigator = StackNavigator(
     HomeView: {
       screen: HomeViewContainer,
       navigationOptions: {
-        headerTitle: 'Weather',
+        headerTitle: '',
         title: 'Title',
         headerStyle: {
         backgroundColor: 'transparent',
