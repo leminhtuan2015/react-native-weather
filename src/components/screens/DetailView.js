@@ -48,12 +48,17 @@ class DetailView extends Component<{}> {
   }
 
   placeViews = () => {
-    let places = this.props.places 
+    let places = this.props.store.placeState.places 
 
     let views = places.map((place) => {
       return this.itemView(place.city, place.countryCode, place.temp, place.id) 
     })
     return views 
+  }
+
+  componentWillMount(){
+
+    this.props.dispatch({type: ActionTypes.GET_PLACES})
   }
 
   render() {

@@ -10,7 +10,7 @@ import rootSaga from '../saga/Saga'
 
 const reducers = combineReducers({
   weatherState: WeatherReducer,  // WeatherReducer is manage weatherState data object
-  PlaceState: PlaceReducer,  
+  placeState: PlaceReducer,  
   nav: NavigatorReducer,
 });
 
@@ -22,5 +22,6 @@ console.log("Store state: " + JSON.stringify(Store.getState()))
 
 sagaMiddleware.run(rootSaga)
 
-
+console.log("222222222222222222222222222222222222222")
+var x = 100
 export default Store;

@@ -21,8 +21,8 @@ class Place {
     return places
   }
 
-  weather = () => {
-  
+  static todayWeather = () => {
+    return Place.all() 
   }
 }
 
