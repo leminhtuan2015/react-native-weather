@@ -10,6 +10,7 @@ import {
   TouchableHighlight,
   ScrollView,
   ImageBackground, 
+  ActivityIndicator,
 } from 'react-native';
 
 
@@ -18,6 +19,8 @@ class DetailView extends Component<{}> {
  
   constructor(props) {
     super(props);
+
+    state = {isLoading: true}
   }
 
   onPressButton = (place, countryCode, id) => {
@@ -57,7 +60,7 @@ class DetailView extends Component<{}> {
   }
 
   componentWillMount(){
-
+    this.props.dispatch({type: ActionTypes.SET_PLACE_LOADING})
     this.props.dispatch({type: ActionTypes.GET_PLACES})
   }
 
@@ -68,6 +71,9 @@ class DetailView extends Component<{}> {
           source={require('../../resources/images/background_3.jpg')} 
           style={styles.backgroundImage} >
           <View id="contentContainer" style={styles.contentContainer} >
+          {this.props.store.placeState.isLoading && 
+            (<ActivityIndicator size="large" color="#0000ff" />)
+          }
           <ScrollView>
             {this.placeViews()}
           </ScrollView>

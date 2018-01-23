@@ -11,7 +11,8 @@ export const WeatherReducer = (state = weather, action) => {
   case ActionTypes.GET_WEATHER_DATA:
     return state
   case ActionTypes.SAVE_WEATHER_DATA:
-    return data
+    state = data
+    return state
   default:
     return state 
   }

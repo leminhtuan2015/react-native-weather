@@ -56,6 +56,8 @@ export function* getPlaces(){
     console.log("Temp 123: " + weather.temp)
   }
 
+//  yield delay(5000)
+
   yield put({ type: ActionTypes.SAVE_PLACES, data: places })
 }
 
