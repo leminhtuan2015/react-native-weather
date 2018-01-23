@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import { List, ListItem, SearchBar, Divider} 
-  from 'react-native-elements'
+import { List,
+  ListItem,
+  SearchBar,
+  Divider,
+  Icon,
+} from 'react-native-elements'
+
 import {
   ImageBackground,
   Image,
   ActivityIndicator,
-}
-  from "react-native"
+} from "react-native"
 
 import {Button} from 'react-native';
 
 import * as ActionTypes from "../../constants/ActionTypes"
 import ImageManager from "../../utils/ImageManager"
+import {styleHeader} from "./NavigatorView"
 
 import {
   Platform,
@@ -36,22 +41,16 @@ class HomeView extends Component<{}> {
   static navigationOptions = ({navigation}) => {
     const { params = {} } = navigation.state;
 		
-		this.headerRight = <Button title="Add"
-      onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
-   
+		this.headerRight = 
+      <Icon 
+        name="place"
+        color='#ffffff'
+        onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
+    
     return {
       headerTitle: '',
       title: 'Title',
-		  headerStyle: {
-				position: 'absolute',
-				backgroundColor: 'transparent',
-        height: 50,
-				borderBottomWidth: 0,
-				zIndex: 100,
-				top: 0,
-				left: 0,
-				right: 0
-			},
+		  headerStyle: styleHeader,
 			headerRight: this.headerRight
 		}
 	}

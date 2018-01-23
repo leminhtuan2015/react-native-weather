@@ -4,13 +4,13 @@ import HomeViewContainer from '../../containers/HomeViewContainer';
 import DetailViewContainer from '../../containers/DetailViewContainer';
 import EditViewContainer from '../../containers/EditViewContainer';
 
-const styleHeader = {
+export const styleHeader = {
   backgroundColor: 'transparent',
   position: 'absolute',
   height: 50,
   top: 0,
   left: 0,
-  right: 0,
+  right: 15,
   borderBottomWidth: 0,
 }
 

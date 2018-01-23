@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { Button } from 'react-native-elements'
+import {
+  Button,
+  Icon,
+} 
+from 'react-native-elements'
 import * as ActionTypes from "../../constants/ActionTypes"
+import {styleHeader} from "./NavigatorView"
 
 import {
   Platform,
@@ -16,6 +21,23 @@ import {
 
 class DetailView extends Component<{}> {
   state = {}
+
+  static navigationOptions = ({navigation}) => {
+    const { params = {} } = navigation.state;
+		
+		this.headerRight = 
+      <Icon 
+        name="add"
+        color='#ffffff'
+        onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
+    
+    return {
+      headerTitle: '',
+      title: 'Title',
+		  headerStyle: styleHeader,
+			headerRight: this.headerRight
+		}
+	}
  
   constructor(props) {
     super(props);
@@ -44,7 +66,7 @@ class DetailView extends Component<{}> {
         underlayColor="white" key={id}>
         <View id="item" style={styles.item}>
           <Text style={styles.itemText}>{place}</Text>
-          <Text style={styles.itemText}>{temp}</Text>
+          <Text style={styles.itemText}>{temp}°</Text>
         </View>
       </TouchableHighlight>
    )  
