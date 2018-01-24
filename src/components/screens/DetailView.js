@@ -41,8 +41,18 @@ class DetailView extends Component<{}> {
  
   constructor(props) {
     super(props);
+    
+    this.bind()
+  }
 
-    state = {isLoading: true}
+  bind = () => {
+    this.props.navigation.setParams({rightButtonOnPress: this.rightButtonOnPress}); 
+  }
+
+  rightButtonOnPress = () => {
+    console.log("Right button Pressed") 
+
+    this.props.navigation.navigate('EditView') 
   }
 
   onPressButton = (place, countryCode, id) => {
@@ -63,7 +73,7 @@ class DetailView extends Component<{}> {
     return (
       <TouchableHighlight 
         onPress={() => {this.onPressButton(place, countryCode, id)}}
-        underlayColor="white" key={id}>
+        underlayColor="gray" key={id}>
         <View id="item" style={styles.item}>
           <Text style={styles.itemText}>{place}</Text>
           <Text style={styles.itemText}>{temp}°</Text>
@@ -119,7 +129,8 @@ class DetailView extends Component<{}> {
   },
 
   item: {
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 10,
     marginLeft: 20,
     marginRight: 20,
     flexDirection: 'row',

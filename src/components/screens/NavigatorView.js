@@ -31,7 +31,15 @@ const Navigator = StackNavigator(
         headerTintColor: '#ffffff',
       },
     },
-    EditView: {screen: EditViewContainer,},
+    EditView: {
+      screen: EditViewContainer,
+       navigationOptions: {
+        headerTitle: 'Add Places',
+        headerStyle: styleHeader,
+        headerTintColor: '#ffffff',
+      },
+
+    },
   },
   {
   // headerMode: 'screen',
