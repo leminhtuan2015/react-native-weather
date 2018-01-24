@@ -6,6 +6,7 @@ import {
 from 'react-native-elements'
 import * as ActionTypes from "../../constants/ActionTypes"
 import {styleHeader} from "./NavigatorView"
+import Place from "../../models/Place"
 
 import {
   Platform,
@@ -43,6 +44,9 @@ class DetailView extends Component<{}> {
     super(props);
     
     this.bind()
+
+    let p = new Place()
+    Place.allFromStorage()
   }
 
   bind = () => {

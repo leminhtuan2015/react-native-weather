@@ -45,7 +45,8 @@ export function* getWeatherData(action){
 
 export function* getPlaces(){
   console.log("Get Places")
-  let places = Place.all()
+//  let places1 = yield call(Place.allFromStorage)
+  let places = yield call(Place.all)
   let weather = new Weather()
 
   for(i = 0; i < places.length; i++){
