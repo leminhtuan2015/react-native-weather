@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Button } from 'react-native-elements'
+import { Button, List, ListItem, } from 'react-native-elements'
 import {Divider,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import {
   RkButton,
   RkTextInput,  
 }
 from 'react-native-ui-kitten';
+import {ListView, } from 'react-native'
 
 import * as ActionTypes from "../../constants/ActionTypes"
 import {styleHeader} from "./NavigatorView"
+import cities from '../../resources/jsons/city.list.json';
 
 import {
   Platform,
@@ -22,6 +24,7 @@ import {
 class EditView extends Component<{}> {
 
   static navigationOptions = ({navigation}) => {
+    
     const { params = {} } = navigation.state;
 		
     return {
@@ -32,6 +35,13 @@ class EditView extends Component<{}> {
 
   constructor(props) {
     super(props);
+    
+    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    
+    this.state = {
+      dataSource: ds.cloneWithRows(cities),
+    };
+
   }
 
   saveButtonPress = () => {
@@ -59,8 +69,19 @@ class EditView extends Component<{}> {
     this.inputCountryCodeText = text
   }
 
+renderRow = (rowData, sectionID) => {
+  return (
+    <ListItem
+      subtitleStyle={{color: "#2196F3"}}
+      titleStyle={{color: "#ffffff"}}
+      key={sectionID}
+      title={rowData.name}
+      subtitle={rowData.country}
+    />
+  )
+}
  
-view = (
+view = () => (
   <View id="container" style={styles.container}>
     <ImageBackground 
       source={require('../../resources/images/background_3.jpg')} 
@@ -92,16 +113,25 @@ view = (
           <Button
             raised
             onPress={this.saveButtonPress}
-            backgroundColor="#E41E63"
+            backgroundColor="#2196F3"
             icon={{name: "save"}}
             title='Save' />
+
+          <List 
+            containerStyle={{backgroundColor: "transparent"}}>
+            <ListView 
+              renderRow={this.renderRow}
+              dataSource={this.state.dataSource}
+            />
+          </List>
+
       </View>
      </ImageBackground>
   </View>
  )
 
  render() {
-    return this.view
+    return this.view()
   }
 }
 
