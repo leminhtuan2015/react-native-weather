@@ -1,4 +1,4 @@
-import AsyncStorage from "react-native"
+import {AsyncStorage} from "react-native"
 
 class Place {
   static ALL_PLACE = "ALL_PLACE"
@@ -21,6 +21,16 @@ class Place {
     this.temp = "--"
   }
 
+  static async save(placesJson) {
+    try {
+      console.log("Create: " )
+      await AsyncStorage.setItem("ALL_PLACE", placesJson) 
+      console.log("Create: Done" )
+    } catch (error) {
+      console.log("Create places error: " + error) 
+    }  
+  }
+
   static all = () => {
     
     let place1 = new Place(1, "Hanoi", "vn", "--")
@@ -35,19 +45,22 @@ class Place {
   }
 
  static async allFromStorage() {
-    console.log("123 ccccc")
-//    await AsyncStorage.setItem('key', 'I like to save it.');
-//      let key = await AsyncStorage.getItem('key')
-      console.log("key : " + key)
-
-  AsyncStorage.getItem('key')
-    .then((response) => {
-      return JSON.parse(response); 
-    }) 
-    .then((parsedResponse) => { 
-      console.log("xxccdd")
-    });
-
+    try {
+      let placesJson = await AsyncStorage.getItem("ALL_PLACE")
+      
+      if(placesJson){
+        console.log("From storage: " + placesJson)
+        return JSON.parse(placesJson) || []  
+      } else {
+        console.log("Init and save to store")
+        let places = Place.all()
+        Place.save(JSON.stringify(places))
+        return places
+      }
+    } catch (error) {
+      console.log("Error: " + error)
+      return []
+    }
   }
 
   static todayWeather = () => {

@@ -27,6 +27,7 @@ export const PlaceReducer = (state = {
     let countryCode = data.countryCode
     let newPlace = new Place(1, city, countryCode, "--")
     state.places.push(newPlace)
+    Place.save(JSON.stringify(state.places))
     state = {place: state.place, places: state.places, cities: state.cities, isLoading: false}
     return state  
   case ActionTypes.FILTER_PLACE:

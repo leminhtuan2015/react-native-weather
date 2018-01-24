@@ -44,13 +44,11 @@ class DetailView extends Component<{}> {
     super(props);
     
     this.bind()
-
-    let p = new Place()
-    Place.allFromStorage()
   }
 
   bind = () => {
-    this.props.navigation.setParams({rightButtonOnPress: this.rightButtonOnPress}); 
+    this.props.navigation
+      .setParams({rightButtonOnPress: this.rightButtonOnPress}); 
   }
 
   rightButtonOnPress = () => {
