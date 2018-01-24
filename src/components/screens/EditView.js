@@ -35,16 +35,30 @@ class EditView extends Component<{}> {
   }
 
   saveButtonPress = () => {
-    this.inputName.shake()
+    this.inputCity.shake()
+    this.inputCountryCode.shake()
+    
+    let cityText = this.inputCityText
+    let countryCodeText = this.inputCountryCodeText
+
+    this.props.dispatch({type: ActionTypes.ADD_PLACE, 
+      data: {city: cityText, countryCode: countryCodeText}})
+
+    this.props.navigation.goBack()
   }
 
   homeButtonPress = () => {
     this.props.navigation.goBack()
   }
 
-  onTextChange = (text) => {
-    this.inputNameText = text
+  onCityTextChange = (text) => {
+    this.inputCityText = text
   }
+
+  onCountryCodeTextChange = (text) => {
+    this.inputCountryCodeText = text
+  }
+
  
 view = (
   <View id="container" style={styles.container}>
@@ -54,14 +68,27 @@ view = (
 
       <View id="contentContainer" style={styles.contentContainer}>
           <FormInput
+            key="city"
             inputStyle={{color: "red", marginLeft: 20}}
             containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
-            ref={(inputName) => {this.inputName = inputName}}
-            onChangeText={(text) => {this.onTextChange(text)}}
-            placeholder="Name"
+            ref={(inputCity) => {this.inputCity = inputCity}}
+            onChangeText={(text) => {this.onCityTextChange(text)}}
+            placeholder="City"
             defaultValue="" />
           
           <Text />
+
+          <FormInput
+            key="countryCode"
+            inputStyle={{color: "red", marginLeft: 20}}
+            containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
+            ref={(inputCountryCode) => {this.inputCountryCode = inputCountryCode}}
+            onChangeText={(text) => {this.onCountryCodeTextChange(text)}}
+            placeholder="County Code"
+            defaultValue="" />
+
+          <Text />
+
           <Button
             raised
             onPress={this.saveButtonPress}

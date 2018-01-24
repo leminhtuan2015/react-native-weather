@@ -2,10 +2,21 @@
 
 class Place {
   constructor(id, city, countryCode, temp){
-    this.id = id
-    this.city = city
-    this.countryCode = countryCode
-    this.temp = temp
+    if(id){
+      this.id = id
+      this.city = city
+      this.countryCode = countryCode
+      this.temp = temp
+    } else {
+      this.init()
+    }
+  }
+
+  init(){
+    this.id = 0
+    this.city = "--"
+    this.countryCode = ""
+    this.temp = "--"
   }
 
   static all = () => {

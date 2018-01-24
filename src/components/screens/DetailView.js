@@ -55,11 +55,11 @@ class DetailView extends Component<{}> {
     this.props.navigation.navigate('EditView') 
   }
 
-  onPressButton = (place, countryCode, id) => {
-    console.log("press: " + id)
+  onPressButton = (place) => {
+    console.log("press: " + place.city)
 
     this.props.dispatch({type: ActionTypes.GET_WEATHER_DATA, 
-      data: {city: place, countryCode: countryCode}})
+      data: {city: place.city, countryCode: place.countryCode}})
 
       this.props.navigation.goBack()
   }
@@ -69,14 +69,14 @@ class DetailView extends Component<{}> {
     this.props.navigation.navigate('EditView') 
   }
 
-  itemView = (place, countryCode, temp, id) => {
+  itemView = (place) => {
     return (
       <TouchableHighlight 
-        onPress={() => {this.onPressButton(place, countryCode, id)}}
-        underlayColor="gray" key={id}>
+        onPress={() => {this.onPressButton(place)}}
+        underlayColor="gray" key={place.city}>
         <View id="item" style={styles.item}>
-          <Text style={styles.itemText}>{place}</Text>
-          <Text style={styles.itemText}>{temp}°</Text>
+          <Text style={styles.itemText}>{place.city}</Text>
+          <Text style={styles.itemText}>{place.temp}°</Text>
         </View>
       </TouchableHighlight>
    )  
@@ -86,7 +86,7 @@ class DetailView extends Component<{}> {
     let places = this.props.store.placeState.places 
 
     let views = places.map((place) => {
-      return this.itemView(place.city, place.countryCode, place.temp, place.id) 
+      return this.itemView(place) 
     })
     return views 
   }
