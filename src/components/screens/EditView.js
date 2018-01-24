@@ -10,7 +10,6 @@ import {ListView, } from 'react-native'
 
 import * as ActionTypes from "../../constants/ActionTypes"
 import {styleHeader} from "./NavigatorView"
-import cities from '../../resources/jsons/city.list.json';
 
 import {
   Platform,
@@ -24,9 +23,7 @@ import {
 class EditView extends Component<{}> {
 
   static navigationOptions = ({navigation}) => {
-    
     const { params = {} } = navigation.state;
-		
     return {
       headerTitle: '',
       title: 'Title',
@@ -35,24 +32,20 @@ class EditView extends Component<{}> {
 
   constructor(props) {
     super(props);
-    
-    const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
-    
-    this.state = {
-      dataSource: ds.cloneWithRows(cities),
-    };
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
+    this.state = {
+      dataSource: this.ds.cloneWithRows(this.props.store.placeState.cities),
+      place: {city: "", countryCode: ""},
+    };
   }
 
   saveButtonPress = () => {
     this.inputCity.shake()
     this.inputCountryCode.shake()
-    
-    let cityText = this.inputCityText
-    let countryCodeText = this.inputCountryCodeText
 
     this.props.dispatch({type: ActionTypes.ADD_PLACE, 
-      data: {city: cityText, countryCode: countryCodeText}})
+      data: {city: this.state.place.city, countryCode: this.state.place.countryCode}})
 
     this.props.navigation.goBack()
   }
@@ -61,74 +54,96 @@ class EditView extends Component<{}> {
     this.props.navigation.goBack()
   }
 
+  onPressListItem = (rowData) => {
+    console.log("Pressed : " + JSON.stringify(rowData))
+    this.setState({
+      dataSource: this.state.dataSource,
+      place: {city: rowData.name, countryCode: rowData.country}
+    }) 
+  }
+
   onCityTextChange = (text) => {
-    this.inputCityText = text
+    this.state.place.city = text
+
+    this.props.dispatch({type: ActionTypes.FILTER_PLACE, data: text})
   }
 
   onCountryCodeTextChange = (text) => {
-    this.inputCountryCodeText = text
+    this.state.place.countryCode = text
   }
 
-renderRow = (rowData, sectionID) => {
-  return (
-    <ListItem
-      subtitleStyle={{color: "#2196F3"}}
-      titleStyle={{color: "#ffffff"}}
-      key={sectionID}
-      title={rowData.name}
-      subtitle={rowData.country}
-    />
-  )
-}
+  componentWillReceiveProps = (newProps) => {
+    console.log("will receive props")
+
+    this.setState({
+      dataSource: this.ds.cloneWithRows(newProps.store.placeState.cities),
+      place: this.state.place
+    })
+  }
+
+  renderRow = (rowData, sectionID) => {
+    return (
+      <ListItem
+        onPress={() => {this.onPressListItem(rowData)}}
+        subtitleStyle={{color: "#2196F3"}}
+        titleStyle={{color: "#ffffff"}}
+        key={sectionID}
+        title={rowData.name}
+        subtitle={rowData.country}
+      />
+    )
+  }
  
-view = () => (
-  <View id="container" style={styles.container}>
-    <ImageBackground 
-      source={require('../../resources/images/background_3.jpg')} 
-      style={styles.backgroundImage} >
+  view = () => (
+    <View id="container" style={styles.container}>
+      <ImageBackground 
+        source={require('../../resources/images/background_3.jpg')} 
+        style={styles.backgroundImage} >
 
-      <View id="contentContainer" style={styles.contentContainer}>
-          <FormInput
-            key="city"
-            inputStyle={{color: "red", marginLeft: 20}}
-            containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
-            ref={(inputCity) => {this.inputCity = inputCity}}
-            onChangeText={(text) => {this.onCityTextChange(text)}}
-            placeholder="City"
-            defaultValue="" />
-          
-          <Text />
+        <View id="contentContainer" style={styles.contentContainer}>
+            <FormInput
+              key="city"
+              value={this.state.place.city}
+              inputStyle={{color: "red", marginLeft: 20}}
+              containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
+              ref={(inputCity) => {this.inputCity = inputCity}}
+              onChangeText={(text) => {this.onCityTextChange(text)}}
+              placeholder="City"
+              defaultValue="" />
+            
+            <Text />
 
-          <FormInput
-            key="countryCode"
-            inputStyle={{color: "red", marginLeft: 20}}
-            containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
-            ref={(inputCountryCode) => {this.inputCountryCode = inputCountryCode}}
-            onChangeText={(text) => {this.onCountryCodeTextChange(text)}}
-            placeholder="County Code"
-            defaultValue="" />
+            <FormInput
+              key="countryCode"
+              value={this.state.place.countryCode}
+              inputStyle={{color: "red", marginLeft: 20}}
+              containerStyle={{backgroundColor: "#B2DFDB", borderRadius: 25}}
+              ref={(inputCountryCode) => {this.inputCountryCode = inputCountryCode}}
+              onChangeText={(text) => {this.onCountryCodeTextChange(text)}}
+              placeholder="County Code"
+              defaultValue="" />
 
-          <Text />
+            <Text />
 
-          <Button
-            raised
-            onPress={this.saveButtonPress}
-            backgroundColor="#2196F3"
-            icon={{name: "save"}}
-            title='Save' />
+            <Button
+              raised
+              onPress={this.saveButtonPress}
+              backgroundColor="#2196F3"
+              icon={{name: "save"}}
+              title='Save' />
 
-          <List 
-            containerStyle={{backgroundColor: "transparent"}}>
-            <ListView 
-              renderRow={this.renderRow}
-              dataSource={this.state.dataSource}
-            />
-          </List>
+            <List 
+              containerStyle={{backgroundColor: "transparent"}}>
+              <ListView 
+                renderRow={this.renderRow}
+                dataSource={this.state.dataSource}
+              />
+            </List>
 
-      </View>
-     </ImageBackground>
-  </View>
- )
+        </View>
+       </ImageBackground>
+    </View>
+   )
 
  render() {
     return this.view()
