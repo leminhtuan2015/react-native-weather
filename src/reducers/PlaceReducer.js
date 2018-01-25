@@ -45,21 +45,22 @@ function deletePlace(state, data){
     }
   }
   
-  state = {place: state.place, places: places, cities: state.cities, isLoading: false}
-  return state
+  Place.save(JSON.stringify(places))
+ // state = {place: state.place, places: places, cities: state.cities, isLoading: false}
+  let newState = Object.assign({}, state, {places: places})
+  return newState
 }
 
 function setPlaceLoading(state){
-  state = {place: state.place, places: state.places, cities: state.cities, isLoading: true}
-  return state
+  let newState = Object.assign({}, state, {isLoading: true})
+  return newState
 }
 
 function savePlace(state, data){
   //state.places = data  // NOT WORK
   console.log("place reducer - save place: " + data)
-  state = {place: state.place, places: data, cities: state.cities, isLoading: false}
- 
-  return state
+  let newState = Object.assign({}, state, {places: data, isLoading: false})
+  return newState
 }
 
 function addPlace(state, data){
@@ -69,16 +70,17 @@ function addPlace(state, data){
   let newPlace = new Place("", city, countryCode, "--")
   state.places.push(newPlace)
   Place.save(JSON.stringify(state.places))
-  state = {place: state.place, places: state.places, cities: state.cities, isLoading: false}
-  return state 
+
+  let newState = Object.assign({}, state)
+  return newState 
 }
 
 function filterPlace(state, keyword){
 	console.log("place reducer - add place: " + keyword)
 	let citiesFilter = filter(keyword)
-	state = {place: state.place, places: state.places, cities: citiesFilter, isLoading: false}
+  let newState = Object.assign({}, state, {cities: citiesFilter})
   
-  return state
+  return newState
 }
 
 function filter(keyword){
