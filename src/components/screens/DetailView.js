@@ -93,7 +93,7 @@ class DetailView extends Component<{}> {
     return views 
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.dispatch({type: ActionTypes.SET_PLACE_LOADING})
     this.props.dispatch({type: ActionTypes.GET_PLACES})
   }

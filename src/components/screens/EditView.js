@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Button, List, ListItem, } from 'react-native-elements'
-import {Divider,FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+
+import {
+  Divider,
+  FormLabel, 
+  FormInput, 
+  FormValidationMessage 
+} from 'react-native-elements'
+
 import {
   RkButton,
   RkTextInput,  
-}
-from 'react-native-ui-kitten';
-import {ListView, } from 'react-native'
-
-import * as ActionTypes from "../../constants/ActionTypes"
-import {styleHeader} from "./NavigatorView"
+} from 'react-native-ui-kitten';
 
 import {
   Platform,
@@ -18,7 +20,11 @@ import {
   View,
   TouchableHighlight,
   ImageBackground,
+  ListView,
 } from 'react-native';
+
+import * as ActionTypes from "../../constants/ActionTypes"
+import {styleHeader} from "./NavigatorView"
 
 class EditView extends Component<{}> {
 
@@ -97,7 +103,7 @@ class EditView extends Component<{}> {
   view = () => (
     <View id="container" style={styles.container}>
       <ImageBackground 
-        source={require('../../resources/images/background_3.jpg')} 
+        source={require('../../resources/images/background_1.jpg')} 
         style={styles.backgroundImage} >
 
         <View id="contentContainer" style={styles.contentContainer}>
@@ -145,7 +151,7 @@ class EditView extends Component<{}> {
     </View>
    )
 
- render() {
+  render() {
     return this.view()
   }
 }
