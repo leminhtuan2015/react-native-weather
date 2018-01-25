@@ -14,7 +14,8 @@ class Place {
   static async save(placesJson) {
     try {
       console.log("Create: " )
-      await AsyncStorage.setItem("ALL_PLACE", placesJson) 
+      //await AsyncStorage.setItem("ALL_PLACE", placesJson) 
+      AsyncStorage.setItem("ALL_PLACE", placesJson) 
       console.log("Create: Done" )
     } catch (error) {
       console.log("Create places error: " + error) 

@@ -49,7 +49,7 @@ class EditView extends Component<{}> {
   saveButtonPress = () => {
     this.inputCity.shake()
     this.inputCountryCode.shake()
-
+    this.isSaveButtonPressed = true
     this.props.dispatch({type: ActionTypes.ADD_PLACE, 
       data: {city: this.state.place.city, countryCode: this.state.place.countryCode}})
 
@@ -80,6 +80,11 @@ class EditView extends Component<{}> {
 
   componentWillReceiveProps = (newProps) => {
     console.log("will receive props")
+
+    if(this.isSaveButtonPressed){
+      this.isSaveButtonPressed = !this.isSaveButtonPressed
+      return
+    }
 
     this.setState({
       dataSource: this.ds.cloneWithRows(newProps.store.placeState.cities),

@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
   },
   
   textTemp: {
-    fontSize: 80,
+    fontSize: 60,
     color: '#ffffff',
     marginTop: 15,
   },
