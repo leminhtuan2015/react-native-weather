@@ -30,6 +30,7 @@ class DetailView extends Component<{}> {
 		this.headerRight = 
       <Icon 
         name="add"
+        underlayColor="transparent"
         color='#ffffff'
         onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
     

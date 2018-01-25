@@ -35,7 +35,6 @@ class HomeView extends Component<{}> {
 
   constructor(props) {
     super(props)
-
   }
 
   static navigationOptions = ({navigation}) => {
@@ -45,6 +44,7 @@ class HomeView extends Component<{}> {
       <Icon 
         name="place"
         color='#ffffff'
+        underlayColor="transparent"
         onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
     
     return {
