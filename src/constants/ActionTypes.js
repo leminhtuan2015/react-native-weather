@@ -6,3 +6,4 @@ export const GET_PLACES = 'GET_PLACES';
 export const SET_PLACE_LOADING = 'SET_PLACE_LOADING';
 export const ADD_PLACE = 'ADD_PLACE';
 export const FILTER_PLACE = 'FILTER_PLACE';
+export const DELETE_PLACE = 'DELETE_PLACE';

@@ -17,22 +17,6 @@ export function* bye(){
   console.log("bye 123")
 }
 
-export function* filterUser(action){
-  console.log("FILTER_USER" + JSON.stringify(action))
-
-  var {type, keyword, users} = action
-
-  var data = []    
-
-  if(keyword){
-    data = [users[0]] 
-  } else {
-    data = users 
-  }
-
-  return data
-}
-
 export function* getWeatherData(action){
   let {data} = action
 
@@ -66,12 +50,11 @@ export function* getPlaces(){
 // single entry point to start all Sagas at once
 export default function* rootSaga() {
     // REGISTER actions
+  yield takeEvery('HELLO', hello)
+  yield takeEvery('BYE', bye)
 
-    yield takeEvery('HELLO', hello)
-    yield takeEvery('BYE', bye)
-    yield takeEvery('FILTER_USER', filterUser)
-    yield takeEvery(ActionTypes.GET_WEATHER_DATA, getWeatherData)
-    yield takeEvery(ActionTypes.GET_PLACES, getPlaces)
+  yield takeEvery(ActionTypes.GET_WEATHER_DATA, getWeatherData)
+  yield takeEvery(ActionTypes.GET_PLACES, getPlaces)
 }
 
 

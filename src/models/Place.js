@@ -1,24 +1,14 @@
 import {AsyncStorage} from "react-native"
+import * as Utils from "../utils/Utils"
 
 class Place {
   static ALL_PLACE = "ALL_PLACE"
 
   constructor(id, city, countryCode, temp){
-    if(id){
-      this.id = id
-      this.city = city
-      this.countryCode = countryCode
-      this.temp = temp
-    } else {
-      this.init()
-    }
-  }
-
-  init(){
-    this.id = 0
-    this.city = "--"
-    this.countryCode = ""
-    this.temp = "--"
+    this.id = id || Utils.guid()
+    this.city = city || "--"
+    this.countryCode = countryCode || "--"
+    this.temp = temp || "--"
   }
 
   static async save(placesJson) {
@@ -33,11 +23,11 @@ class Place {
 
   static all = () => {
     
-    let place1 = new Place(1, "Hanoi", "vn", "--")
-    let place2 = new Place(2, "Danang", "vn", "--")
-    let place3 = new Place(3, "London", "uk", "--")
-    let place4 = new Place(4, "New York", "us", "--")
-    let place5 = new Place(5, "Tokyo", "jp", "--")
+    let place1 = new Place(Utils.guid(), "Hanoi", "vn", "--")
+    let place2 = new Place(Utils.guid(), "Danang", "vn", "--")
+    let place3 = new Place(Utils.guid(), "London", "uk", "--")
+    let place4 = new Place(Utils.guid(), "New York", "us", "--")
+    let place5 = new Place(Utils.guid(), "Tokyo", "jp", "--")
 
     let places = [place1, place2, place3, place4, place5] 
     

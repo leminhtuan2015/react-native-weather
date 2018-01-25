@@ -9,6 +9,7 @@ import {styleHeader} from "./NavigatorView"
 import Place from "../../models/Place"
 
 import {
+  Alert,
   Platform,
   StyleSheet,
   Text,
@@ -71,10 +72,27 @@ class DetailView extends Component<{}> {
     this.props.navigation.navigate('EditView') 
   }
 
+  confirmDeleteItem = (placeId) => {
+	  Alert.alert(
+			'Delete Item', 'You will delete this item?',
+		[
+			{text: 'Delete', onPress: () => {
+			  console.log("Delete : " + placeId)	
+ 				this.props.dispatch({type: ActionTypes.DELETE_PLACE, data: placeId})
+				}
+			},
+			{text: 'Not Delete', onPress: () => console.log('Not Delete Pressed')},
+			{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+		],
+		{ cancelable: false }
+		)
+  }
+
   itemView = (place) => {
     return (
       <TouchableHighlight 
         onPress={() => {this.onPressButton(place)}}
+        onLongPress={() => {this.confirmDeleteItem(place.id)}}
         underlayColor="gray" key={place.city}>
         <View id="item" style={styles.item}>
           <Text style={styles.itemText}>{place.city}</Text>
