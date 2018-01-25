@@ -133,18 +133,22 @@ class EditView extends Component<{}> {
 
             <Button
               raised
+              style={styles.button}
               onPress={this.saveButtonPress}
               backgroundColor="#2196F3"
               icon={{name: "save"}}
               title='Save' />
 
-            <List 
-              containerStyle={{backgroundColor: "transparent"}}>
-              <ListView 
-                renderRow={this.renderRow}
-                dataSource={this.state.dataSource}
-              />
-            </List>
+            <View style={{flex: 1}}>
+              <List 
+                style={{flex: 1}}
+                containerStyle={{backgroundColor: "transparent"}}>
+                <ListView 
+                  renderRow={this.renderRow}
+                  dataSource={this.state.dataSource}
+                />
+              </List>
+            </View>
 
         </View>
        </ImageBackground>
@@ -166,15 +170,13 @@ class EditView extends Component<{}> {
   contentContainer: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: 80,
+    marginTop: 90,
   },
 
   button: {
     alignItems: 'center',
-    padding: 10,
-    marginTop: 10,
-
   },
+
   backgroundImage: {
     flex: 1,
     width: null,

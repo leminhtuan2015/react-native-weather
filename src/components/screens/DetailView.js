@@ -124,7 +124,8 @@ class DetailView extends Component<{}> {
           style={styles.backgroundImage} >
           <View id="contentContainer" style={styles.contentContainer} >
           {this.props.store.placeState.isLoading && 
-            (<ActivityIndicator size="large" color="#0000ff" />)
+            (<ActivityIndicator size="large"
+               color="#ffffff" style={styles.loading}/>)
           }
           <ScrollView>
             {this.placeViews()}
@@ -145,7 +146,7 @@ class DetailView extends Component<{}> {
 
   itemText: {
     color: "#fff",
-    fontSize: 40,
+    fontSize: 30,
   },
 
   item: {
@@ -165,8 +166,18 @@ class DetailView extends Component<{}> {
 
   contentContainer: {
     flex: 1,
-    marginTop: 50,
+    marginTop: 70,
   }, 
+  
+  loading: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 
 })
 
