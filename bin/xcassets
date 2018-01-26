@@ -2,7 +2,7 @@
 
 ICON_1024="./1024.png"
 SPALSH_2048="./2048_splash.png"
-IOS_PROJECT="../../ios/demo_react_native/"
+IOS_PROJECT="../ios/demo_react_native/"
 ICON_OUTPUT="${IOS_PROJECT}/Images.xcassets/AppIcon.appiconset"
 SPLASH_OUTPUT="${IOS_PROJECT}/Images.xcassets/LaunchImage.launchimage"
 
