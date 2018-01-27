@@ -68,10 +68,17 @@ class EditView extends Component<{}> {
   saveButtonPress = () => {
     this.inputCity.shake()
     this.isSaveButtonPressed = true
-    this.props.dispatch({type: ActionTypes.ADD_PLACE, 
-      data: {city: this.state.place.city, countryCode: this.state.place.countryCode}})
+    
+    if(this.state.place.city){
+      this.props.dispatch({type: ActionTypes.ADD_PLACE, 
+        data: {
+          city: this.state.place.city, 
+          countryCode: this.state.place.countryCode
+        }
+      })
 
-    this.props.navigation.goBack()
+      this.props.navigation.goBack()
+    }
   }
 
   homeButtonPress = () => {

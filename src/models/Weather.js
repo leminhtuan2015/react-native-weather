@@ -23,13 +23,16 @@ class Weather {
   }
 
   toObject(jsonData) {
-    console.log("toObject " + jsonData["name"])
-
-    this.city = jsonData["name"]  
-    this.description = jsonData["weather"][0]["description"] 
-    this.temp = Math.round(jsonData["main"]["temp"] - 273.15)  
-    this.tempMax = Math.round(jsonData["main"]["temp_max"] - 273.15)  
-    this.tempMin = Math.round(jsonData["main"]["temp_min"] - 273.15)  
+    console.log("toObject " + JSON.stringify(jsonData))
+    console.log("toObject name " + jsonData["name"])
+    
+    if(jsonData && (jsonData["cod"] != 404)){
+      this.city = jsonData["name"]  
+      this.description = jsonData["weather"][0]["description"] 
+      this.temp = Math.round(jsonData["main"]["temp"] - 273.15)  
+      this.tempMax = Math.round(jsonData["main"]["temp_max"] - 273.15)  
+      this.tempMin = Math.round(jsonData["main"]["temp_min"] - 273.15)  
+    }
   }
 
   today = (city, countryCode) => {
@@ -57,8 +60,6 @@ class Weather {
         return this
       });
   }
-
-
 }
 
 export default Weather
