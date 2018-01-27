@@ -43,6 +43,7 @@ class HomeView extends Component<{}> {
 		this.headerRight = 
       <Icon 
         name="place"
+        size={30}
         color='#ffffff'
         underlayColor="transparent"
         onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
@@ -146,9 +147,9 @@ class HomeView extends Component<{}> {
                 id="todayTempOverview"
                 style={[styles.todayTempOverview]}>
 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>Today</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMax}°⤒</Text> 
-                <Text style={{color: "#ffffff", fontSize: 30 }}>{this.props.store.weatherState.tempMin}°⤓</Text> 
+                <Text style={{color: "#ffffff", fontSize: 30 }}>
+                    {this.props.store.weatherState.tempMax}° ⤒ ~ {this.props.store.weatherState.tempMin}° ⤓
+                </Text> 
               </View>
 
               <ScrollView 
@@ -184,7 +185,7 @@ const styles = StyleSheet.create({
 
   contentContainer: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 60,
     flexDirection: "column",
     //justifyContent: 'center',
     alignItems: 'center',
@@ -224,11 +225,11 @@ const styles = StyleSheet.create({
   },
 
   todayTempOverview: {
-    marginTop: 20,
+    marginTop: 5,
     marginLeft: 40,
     marginRight: 40,
     flexDirection: 'row',
-    justifyContent:'space-between'
+    justifyContent:'center'
   },
 
   todayTempDetail: {

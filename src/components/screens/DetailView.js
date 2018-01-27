@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import {
   Button,
   Icon,
-} 
-from 'react-native-elements'
+} from 'react-native-elements'
+
 import * as ActionTypes from "../../constants/ActionTypes"
 import {styleHeader} from "./NavigatorView"
 import Place from "../../models/Place"
@@ -30,6 +30,7 @@ class DetailView extends Component<{}> {
 		this.headerRight = 
       <Icon 
         name="add"
+        size={30}
         underlayColor="transparent"
         color='#ffffff'
         onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />

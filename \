@@ -5,8 +5,7 @@ import {
   Divider,
   FormLabel, 
   FormInput, 
-  FormValidationMessage,
-  Icon,
+  FormValidationMessage 
 } from 'react-native-elements'
 
 import {
@@ -31,20 +30,9 @@ class EditView extends Component<{}> {
 
   static navigationOptions = ({navigation}) => {
     const { params = {} } = navigation.state;
-		
-		this.headerRight = 
-      <Icon 
-        name="save"
-        size={30}
-        underlayColor="transparent"
-        color='#ffffff'
-        onPress={params.rightButtonOnPress ? params.rightButtonOnPress : () => null} />
-    
     return {
       headerTitle: '',
       title: 'Title',
-		  headerStyle: styleHeader,
-			headerRight: this.headerRight
 		}
 	}
 
@@ -56,17 +44,11 @@ class EditView extends Component<{}> {
       dataSource: this.ds.cloneWithRows(this.props.store.placeState.cities),
       place: {city: "", countryCode: ""},
     };
-
-    this.bind()
-  }
-
-  bind = () => {
-    this.props.navigation
-      .setParams({rightButtonOnPress: this.saveButtonPress}); 
   }
 
   saveButtonPress = () => {
     this.inputCity.shake()
+    this.inputCountryCode.shake()
     this.isSaveButtonPressed = true
     this.props.dispatch({type: ActionTypes.ADD_PLACE, 
       data: {city: this.state.place.city, countryCode: this.state.place.countryCode}})
