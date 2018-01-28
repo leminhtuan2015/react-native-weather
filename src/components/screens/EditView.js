@@ -58,7 +58,7 @@ class EditView extends Component<{}> {
       isSaveButtonPressed: false,
     }
 
-    console.log("state at constructor: " + JSON.stringify(this.state))
+   // console.log("state at constructor: " + JSON.stringify(this.state))
 
     this.bind()
   }
@@ -71,7 +71,9 @@ class EditView extends Component<{}> {
   saveButtonPress = () => {
     this.inputCity.shake()
     this.setState({isSaveButtonPressed: true})
-    console.log("Current state: " + JSON.stringify(this.state))
+   // console.log("Current state: " + JSON.stringify(this.state))
+
+   this.props.dispatch({type: ActionTypes.TEST_CHANGE_PROPS})
     
     if(this.state.place.city){
       this.props.dispatch({type: ActionTypes.ADD_PLACE, 

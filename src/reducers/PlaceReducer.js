@@ -15,6 +15,8 @@ export const PlaceReducer = (state = {
   const {type, data} = action 
 
   switch (type) {
+  case ActionTypes.TEST_CHANGE_PROPS:
+    return testChangeProps(state, "")
   case ActionTypes.SAVE_PLACES:
     return savePlace(state, data)   
   case ActionTypes.SET_PLACE_LOADING:
@@ -28,6 +30,12 @@ export const PlaceReducer = (state = {
   default:
     return state 
   }
+}
+
+function testChangeProps(state, data){
+  console.log("place reducer - test change props: " + data)
+  //return state // not change props
+  return Object.assign({}, state, {newState: true}) // change props
 }
 
 function deletePlace(state, data){
