@@ -10,6 +10,7 @@ import {
   ImageBackground,
   Image,
   ActivityIndicator,
+  StatusBar,
 } from "react-native"
 
 import {Button} from 'react-native';
@@ -89,6 +90,11 @@ class HomeView extends Component<{}> {
   hourTemp = (hour, image, temp, key) => {
     return (
        <View style = {[styles.todayTempByHour]} key={key} >
+				 <StatusBar
+					 backgroundColor="blue"
+					 barStyle="light-content"
+				 />
+
          <View id="hour">
            <Text style={[styles.white, styles.todayTempByHourText]}>{hour}</Text> 
          </View>

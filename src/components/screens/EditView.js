@@ -55,7 +55,10 @@ class EditView extends Component<{}> {
     this.state = {
       dataSource: this.ds.cloneWithRows(this.props.store.placeState.cities),
       place: {city: "", countryCode: ""},
-    };
+      isSaveButtonPressed: false,
+    }
+
+    console.log("state at constructor: " + JSON.stringify(this.state))
 
     this.bind()
   }
@@ -67,7 +70,8 @@ class EditView extends Component<{}> {
 
   saveButtonPress = () => {
     this.inputCity.shake()
-    this.isSaveButtonPressed = true
+    this.setState({isSaveButtonPressed: true})
+    console.log("Current state: " + JSON.stringify(this.state))
     
     if(this.state.place.city){
       this.props.dispatch({type: ActionTypes.ADD_PLACE, 
@@ -88,28 +92,23 @@ class EditView extends Component<{}> {
   onPressListItem = (rowData) => {
     console.log("Pressed : " + JSON.stringify(rowData))
     this.setState({
-      dataSource: this.state.dataSource,
-      place: {city: rowData.name, countryCode: rowData.country}
+      place: {city: rowData.name, countryCode: rowData.country},
+      isSaveButtonPressed: false,
     }) 
   }
 
   onCityTextChange = (text) => {
     this.state.place.city = text
-
+    console.log("before dispatch..........")
     this.props.dispatch({type: ActionTypes.FILTER_PLACE, data: text})
   }
 
   componentWillReceiveProps = (newProps) => {
     console.log("will receive props")
 
-    if(this.isSaveButtonPressed){
-      this.isSaveButtonPressed = !this.isSaveButtonPressed
-      return
-    }
-
     this.setState({
       dataSource: this.ds.cloneWithRows(newProps.store.placeState.cities),
-      place: this.state.place
+      isSaveButtonPressed: false,
     })
   }
 
@@ -117,13 +116,24 @@ class EditView extends Component<{}> {
     return (
       <ListItem
         onPress={() => {this.onPressListItem(rowData)}}
-        subtitleStyle={{color: "#2196F3"}}
-        titleStyle={{color: "#ffffff"}}
+        underlayColor="#bdbdbd"
+        titleStyle={{color: "#ffffff", fontSize: 24}}
+        subtitleStyle={{color: "#eeeeee", fontSize: 16}}
         key={sectionID}
         title={rowData.name}
         subtitle={rowData.country}
       />
     )
+  }
+
+  textInputError = () => {
+    if(!this.state.place.city && this.state.isSaveButtonPressed){
+      return (
+        <FormValidationMessage containerStyle={{marginLeft: 5}}>
+          {'This field is required'}
+        </FormValidationMessage> 
+      )
+    } 
   }
  
   view = () => (
@@ -141,14 +151,21 @@ class EditView extends Component<{}> {
               ref={(inputCity) => {this.inputCity = inputCity}}
               onChangeText={(text) => {this.onCityTextChange(text)}}
               placeholder="City"
+							autoCorrect={false}
               defaultValue="" />
-            
+
+            {this.textInputError()}
+
             <Text />
 
             <View style={{flex: 1}}>
               <List 
-                style={{flex: 1}}
-                containerStyle={{backgroundColor: "transparent"}}>
+                style={{flex: 1, }}
+                containerStyle={{
+                  backgroundColor: "transparent", 
+                  borderBottomColor: "#ffffff",
+                  borderBottomWidth: 0,
+                  borderTopWidth: 1,}}>
                 <ListView 
                   renderRow={this.renderRow}
                   dataSource={this.state.dataSource}

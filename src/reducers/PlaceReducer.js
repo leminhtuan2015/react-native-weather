@@ -76,7 +76,7 @@ function addPlace(state, data){
 }
 
 function filterPlace(state, keyword){
-	console.log("place reducer - add place: " + keyword)
+	console.log("place reducer - filter place: " + keyword)
 	let citiesFilter = filter(keyword)
   let newState = Object.assign({}, state, {cities: citiesFilter})
   

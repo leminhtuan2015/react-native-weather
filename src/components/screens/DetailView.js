@@ -136,7 +136,6 @@ class DetailView extends Component<{}> {
         </ImageBackground> 
       </View>
    )
- 
   }
 }
 
