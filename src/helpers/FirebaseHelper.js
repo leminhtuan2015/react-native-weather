@@ -31,7 +31,7 @@ class FirebaseHelper {
     let query = database
       .ref("cities")
       .orderByChild("name")
-      .limitToFirst(10)
+      .limitToFirst(30)
       .startAt(keyword)
       .endAt(keyword + "\uf8ff")
       .once("value", function(data) {
