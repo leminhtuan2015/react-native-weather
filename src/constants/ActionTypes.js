@@ -5,7 +5,11 @@ export const SAVE_PLACES = 'SAVE_PLACES';
 export const GET_PLACES = 'GET_PLACES';
 export const SET_PLACE_LOADING = 'SET_PLACE_LOADING';
 export const ADD_PLACE = 'ADD_PLACE';
-export const FILTER_PLACE = 'FILTER_PLACE';
 export const DELETE_PLACE = 'DELETE_PLACE';
+
+export const FILTER_CITY = 'FILTER_CITY';
+export const FIREBASE_FILTER_CITY = 'FIREBASE_FILTER_CITY';
+export const SET_FILTER_CITIES = 'SET_FILTER_CITIES';
+
 export const TEST_CHANGE_PROPS = 'TEST_CHANGE_PROPS';
 
