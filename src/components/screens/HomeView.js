@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {Button} from 'react-native';
+
 import { List,
   ListItem,
   SearchBar,
@@ -13,11 +15,12 @@ import {
   StatusBar,
 } from "react-native"
 
-import {Button} from 'react-native';
-
-import * as ActionTypes from "../../constants/ActionTypes"
-import ImageManager from "../../utils/ImageManager"
-import {styleHeader} from "./NavigatorView"
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+} from 'react-native-admob'
 
 import {
   Platform,
@@ -28,6 +31,9 @@ import {
   ListView,
 } from 'react-native';
 
+import * as ActionTypes from "../../constants/ActionTypes"
+import ImageManager from "../../utils/ImageManager"
+import {styleHeader} from "./NavigatorView"
 
 class HomeView extends Component<{}> {
   static headerRight = null
@@ -36,6 +42,8 @@ class HomeView extends Component<{}> {
 
   constructor(props) {
     super(props)
+    
+    this.showIntertitialAd()
   }
 
   static navigationOptions = ({navigation}) => {
@@ -56,6 +64,13 @@ class HomeView extends Component<{}> {
 			headerRight: this.headerRight
 		}
 	}
+
+  showIntertitialAd = () => {
+		// Display an interstitial
+		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+		AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+  }
 
   rightButtonOnPress = () => {
     console.log("Right button Pressed") 
