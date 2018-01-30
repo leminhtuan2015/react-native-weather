@@ -100,9 +100,10 @@ class EditView extends Component<{}> {
   }
 
   onCityTextChange = (text) => {
-    this.state.place.city = text
+    this.setState({place : {city: text}})
     console.log("before dispatch..........")
-    this.props.dispatch({type: ActionTypes.FILTER_PLACE, data: text})
+    //this.props.dispatch({type: ActionTypes.FILTER_CITY, data: text})
+    this.props.dispatch({type: ActionTypes.FIREBASE_FILTER_CITY, data: text})
   }
 
   componentWillReceiveProps = (newProps) => {

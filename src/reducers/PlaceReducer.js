@@ -18,13 +18,15 @@ export const PlaceReducer = (state = {
   case ActionTypes.TEST_CHANGE_PROPS:
     return testChangeProps(state, "")
   case ActionTypes.SAVE_PLACES:
-    return savePlace(state, data)   
+    return savePlaces(state, data)   
   case ActionTypes.SET_PLACE_LOADING:
     return setPlaceLoading(state)  
   case ActionTypes.ADD_PLACE:
     return addPlace(state, data)  
-  case ActionTypes.FILTER_PLACE:
-    return filterPlace(state, data)
+  case ActionTypes.FILTER_CITY:
+    return filterCity(state, data)
+  case ActionTypes.SET_FILTER_CITIES:
+    return setFilterCities(state, data)
   case ActionTypes.DELETE_PLACE:
     return deletePlace(state, data)
   default:
@@ -54,7 +56,6 @@ function deletePlace(state, data){
   }
   
   Place.save(JSON.stringify(places))
- // state = {place: state.place, places: places, cities: state.cities, isLoading: false}
   let newState = Object.assign({}, state, {places: places})
   return newState
 }
@@ -64,7 +65,7 @@ function setPlaceLoading(state){
   return newState
 }
 
-function savePlace(state, data){
+function savePlaces(state, data){
   //state.places = data  // NOT WORK
   console.log("place reducer - save place: " + data)
   let newState = Object.assign({}, state, {places: data, isLoading: false})
@@ -83,11 +84,17 @@ function addPlace(state, data){
   return newState 
 }
 
-function filterPlace(state, keyword){
+function filterCity(state, keyword){
 	console.log("place reducer - filter place: " + keyword)
 	let citiesFilter = filter(keyword)
   let newState = Object.assign({}, state, {cities: citiesFilter})
   
+  return newState
+}
+
+function setFilterCities(state, data){
+  let newState = Object.assign({}, state, {cities: data})
+
   return newState
 }
 
