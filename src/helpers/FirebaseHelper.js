@@ -32,8 +32,8 @@ class FirebaseHelper {
       .ref("cities")
       .orderByChild("name")
       .limitToFirst(10)
-      .startAt("@" + keyword)
-      .endAt("@" + keyword + "\uf8ff")
+      .startAt(keyword)
+      .endAt(keyword + "\uf8ff")
       .once("value", function(data) {
          //console.log("Equal to filter: " + JSON.stringify(data.val()));
          
