@@ -56,7 +56,7 @@ class Weather {
         return this
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Weather Today Error: " + error);
         return this
       });
   }
