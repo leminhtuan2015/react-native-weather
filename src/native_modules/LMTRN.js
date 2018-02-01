@@ -1,8 +1,8 @@
 
 var LMTRNModule = require('NativeModules').LMTRNModule
 
-
- let squareMe = (num) => {
+class LMTRN {
+ squareMe = (num) => {
     if (num == '') {
       return;
     }
@@ -13,9 +13,13 @@ var LMTRNModule = require('NativeModules').LMTRNModule
       if (error) {
         console.error(error);
       } else {
-        console.log("OKIIII");
+        console.log("OKIIII: " + number);
       }
     })
   }
 
-export default squareMe
+  log = (message) => {
+    LMTRNModule.log()
+  }
+}
+export default LMTRN

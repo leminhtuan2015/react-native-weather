@@ -7,14 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "RCTBridgeModule.h"
+#import <React/RCTBridgeModule.h>
 
 @interface LMTRNModule : NSObject <RCTBridgeModule>
-
-RCT_EXPORT_MODULE()
-
-RCT_EXPORT_METHOD(squareMe:(int)number:(RCTResponseSenderBlock)callback) {
-    callback(@[[NSNull null], [NSNumber numberWithInt:(number*number)]]);
-}
 
 @end
