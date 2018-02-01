@@ -33,6 +33,8 @@ import * as ActionTypes from "../../constants/ActionTypes"
 import ImageManager from "../../utils/ImageManager"
 import {styleHeader} from "./NavigatorView"
 
+import squareMe from "../../native_modules/LMTRNModule"
+
 class HomeView extends Component<{}> {
   static headerRight = null
 
@@ -42,6 +44,8 @@ class HomeView extends Component<{}> {
     super(props)
     
     this.showIntertitialAd()
+
+    squareMe(3)
   }
 
   static navigationOptions = ({navigation}) => {
