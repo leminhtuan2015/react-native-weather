@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import {Button} from 'react-native';
+import AdBannerView from "../views/AdBannerView"
+
+import {
+  AdMobInterstitial,
+} from 'react-native-admob'
+
 import { List,
   ListItem,
   SearchBar,
@@ -13,12 +20,6 @@ import {
   StatusBar,
 } from "react-native"
 
-import {Button} from 'react-native';
-
-import * as ActionTypes from "../../constants/ActionTypes"
-import ImageManager from "../../utils/ImageManager"
-import {styleHeader} from "./NavigatorView"
-
 import {
   Platform,
   StyleSheet,
@@ -28,6 +29,9 @@ import {
   ListView,
 } from 'react-native';
 
+import * as ActionTypes from "../../constants/ActionTypes"
+import ImageManager from "../../utils/ImageManager"
+import {styleHeader} from "./NavigatorView"
 
 class HomeView extends Component<{}> {
   static headerRight = null
@@ -36,6 +40,8 @@ class HomeView extends Component<{}> {
 
   constructor(props) {
     super(props)
+    
+    this.showIntertitialAd()
   }
 
   static navigationOptions = ({navigation}) => {
@@ -56,6 +62,13 @@ class HomeView extends Component<{}> {
 			headerRight: this.headerRight
 		}
 	}
+
+  showIntertitialAd = () => {
+		// Display an interstitial
+		AdMobInterstitial.setAdUnitID('ca-app-pub-3940256099942544/1033173712');
+		AdMobInterstitial.setTestDevices([AdMobInterstitial.simulatorId]);
+		AdMobInterstitial.requestAd().then(() => AdMobInterstitial.showAd());
+  }
 
   rightButtonOnPress = () => {
     console.log("Right button Pressed") 
@@ -131,7 +144,7 @@ class HomeView extends Component<{}> {
           source={require('../../resources/images/background_2.jpg')} 
           style={styles.backgroundImage} >
          
-          <ScrollView> 
+          <ScrollView style={{flex: 1}}> 
           <View id="contentContainer" style={styles.contentContainer}>
             
             <View id="topView" style={styles.topView}>
@@ -169,8 +182,12 @@ class HomeView extends Component<{}> {
 
             </View>
 
+						
           </View>
           </ScrollView>
+
+          <AdBannerView />
+
         </ImageBackground>
       </View>
     );
