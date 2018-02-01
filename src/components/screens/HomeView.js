@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import {Button} from 'react-native';
+import AdBannerView from "../views/AdBannerView"
+
+import {
+  AdMobInterstitial,
+} from 'react-native-admob'
 
 import { List,
   ListItem,
@@ -14,13 +19,6 @@ import {
   ActivityIndicator,
   StatusBar,
 } from "react-native"
-
-import {
-  AdMobBanner,
-  AdMobInterstitial,
-  PublisherBanner,
-  AdMobRewarded,
-} from 'react-native-admob'
 
 import {
   Platform,
@@ -146,7 +144,7 @@ class HomeView extends Component<{}> {
           source={require('../../resources/images/background_2.jpg')} 
           style={styles.backgroundImage} >
          
-          <ScrollView> 
+          <ScrollView style={{flex: 1}}> 
           <View id="contentContainer" style={styles.contentContainer}>
             
             <View id="topView" style={styles.topView}>
@@ -184,8 +182,12 @@ class HomeView extends Component<{}> {
 
             </View>
 
+						
           </View>
           </ScrollView>
+
+          <AdBannerView />
+
         </ImageBackground>
       </View>
     );
