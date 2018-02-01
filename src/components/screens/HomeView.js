@@ -33,6 +33,8 @@ import * as ActionTypes from "../../constants/ActionTypes"
 import ImageManager from "../../utils/ImageManager"
 import {styleHeader} from "./NavigatorView"
 
+import LMTRN from "../../native_modules/LMTRN"
+
 class HomeView extends Component<{}> {
   static headerRight = null
 
@@ -42,6 +44,10 @@ class HomeView extends Component<{}> {
     super(props)
     
     this.showIntertitialAd()
+
+    let lmtRN = new LMTRN()
+    lmtRN.squareMe(3)
+    lmtRN.log("TUAN XXXXX")
   }
 
   static navigationOptions = ({navigation}) => {

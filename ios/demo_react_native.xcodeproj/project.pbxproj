@@ -58,6 +58,7 @@
 		A7112F982003B5CC006D2EFB /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A7112F5D2003B5CC006D2EFB /* Zocial.ttf */; };
 		A75CAA1420216DDE00DDF94F /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75CAA1220216DB300DDF94F /* GoogleMobileAds.framework */; };
 		A7911D461FFF272100FDDE8F /* libReactNativeNavigation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7911D441FFF26DF00FDDE8F /* libReactNativeNavigation.a */; };
+		A79AD20B202309C90088B563 /* libLMTRNModule.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A79AD20A202304850088B563 /* libLMTRNModule.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B222988A908B424D9142D691 /* libRNSearchBar.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4DCDE8DAE2C42AABE087F70 /* libRNSearchBar.a */; };
 		CAB373C7112F45E8B3B10679 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C4C680F6C98D42C4BCC43EFB /* MaterialIcons.ttf */; };
@@ -347,6 +348,13 @@
 			remoteGlobalIDString = D8AFADBD1BEE6F3F00A4592D;
 			remoteInfo = ReactNativeNavigation;
 		};
+		A79AD209202304850088B563 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A79AD205202304840088B563 /* LMTRNModule.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A79AD1C62023032A0088B563;
+			remoteInfo = LMTRNModule;
+		};
 		ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */;
@@ -405,6 +413,7 @@
 		A7112F5D2003B5CC006D2EFB /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		A75CAA1220216DB300DDF94F /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		A7911D241FFF26DF00FDDE8F /* ReactNativeNavigation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeNavigation.xcodeproj; path = "../node_modules/react-native-navigation/ios/ReactNativeNavigation.xcodeproj"; sourceTree = "<group>"; };
+		A79AD205202304840088B563 /* LMTRNModule.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LMTRNModule.xcodeproj; path = StaticLibraries/LMTRNModule/LMTRNModule.xcodeproj; sourceTree = "<group>"; };
 		AB76558835F74325BE1C7113 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
 		C4C680F6C98D42C4BCC43EFB /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -427,6 +436,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79AD20B202309C90088B563 /* libLMTRNModule.a in Frameworks */,
 				A75CAA1420216DDE00DDF94F /* GoogleMobileAds.framework in Frameworks */,
 				A7911D461FFF272100FDDE8F /* libReactNativeNavigation.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -626,6 +636,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				A79AD205202304840088B563 /* LMTRNModule.xcodeproj */,
 				A7911D241FFF26DF00FDDE8F /* ReactNativeNavigation.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
@@ -760,6 +771,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A79AD206202304840088B563 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A79AD20A202304850088B563 /* libLMTRNModule.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		ADBDB9201DFEBF0600ED6528 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -886,6 +905,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = A79AD206202304840088B563 /* Products */;
+					ProjectRef = A79AD205202304840088B563 /* LMTRNModule.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1228,6 +1251,13 @@
 			remoteRef = A7911D431FFF26DF00FDDE8F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		A79AD20A202304850088B563 /* libLMTRNModule.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libLMTRNModule.a;
+			remoteRef = A79AD209202304850088B563 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1465,7 +1495,8 @@
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
-					"$(SRCROOT)/../node_modules/react-native-search-bar/ios",
+					"path/../node_modules/react-native-search-bar/ios",
+					"$(SRCROOT)/../ios/StaticLibraries/LMTRNModule",
 				);
 				INFOPLIST_FILE = demo_react_native/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1493,7 +1524,8 @@
 					"$(SRCROOT)/../node_modules/react-native-navigation/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-admob/ios",
-					"$(SRCROOT)/../node_modules/react-native-search-bar/ios",
+					"path/../node_modules/react-native-search-bar/ios",
+					"$(SRCROOT)/../ios/StaticLibraries/LMTRNModule",
 				);
 				INFOPLIST_FILE = demo_react_native/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
