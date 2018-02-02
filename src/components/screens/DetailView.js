@@ -5,7 +5,7 @@ import {
 } from 'react-native-elements'
 
 import * as ActionTypes from "../../constants/ActionTypes"
-import {styleHeader} from "./NavigatorView"
+import {styleHeader} from "./StackNavigatorView"
 import Place from "../../models/Place"
 
 import {

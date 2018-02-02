@@ -31,7 +31,7 @@ import {
 
 import * as ActionTypes from "../../constants/ActionTypes"
 import ImageManager from "../../utils/ImageManager"
-import {styleHeader} from "./NavigatorView"
+import {styleHeader} from "./StackNavigatorView"
 
 import LMTRN from "../../native_modules/LMTRN"
 

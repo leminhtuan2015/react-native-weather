@@ -1,10 +1,10 @@
 import { NavigationActions } from 'react-navigation';
-import NavigatorView from '../components/screens/NavigatorView';
+import StackNavigatorView from '../components/screens/StackNavigatorView';
 
-const initialState = NavigatorView.router.getStateForAction(NavigationActions.init());
+const initialState = StackNavigatorView.router.getStateForAction(NavigationActions.init());
 
 export default (state = initialState, actions) => {
-    const nextState = NavigatorView.router.getStateForAction(actions, state);
+    const nextState = StackNavigatorView.router.getStateForAction(actions, state);
 
     return nextState || state;
 }

@@ -3,6 +3,7 @@ import { StackNavigator } from 'react-navigation';
 import HomeViewContainer from '../../containers/HomeViewContainer';
 import DetailViewContainer from '../../containers/DetailViewContainer';
 import EditViewContainer from '../../containers/EditViewContainer';
+import DrawerNavigatorView from './DrawerNavigatorView';
 
 export const styleHeader = {
   backgroundColor: 'transparent',
@@ -14,8 +15,11 @@ export const styleHeader = {
   borderBottomWidth: 0,
 }
 
-const Navigator = StackNavigator(
+const StackNavigatorView = StackNavigator(
   {
+    DrawerNavigatorView: {
+      screen: DrawerNavigatorView
+    },
     HomeView: {
       screen: HomeViewContainer,
       headerTitle: '',
@@ -42,12 +46,8 @@ const Navigator = StackNavigator(
     },
   },
   {
-  // headerMode: 'screen',
-  // mode: 'card',
-  // cardStyle: { backgroundColor: 'transparent' },
-  // tintColor: '#ffffff',
-  // opacity:0.99,
+  headerMode: 'none',
   }
 );
 
-export default Navigator
+export default StackNavigatorView

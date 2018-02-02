@@ -25,7 +25,7 @@ import {
 } from 'react-native';
 
 import * as ActionTypes from "../../constants/ActionTypes"
-import {styleHeader} from "./NavigatorView"
+import {styleHeader} from "./StackNavigatorView"
 
 class EditView extends Component<{}> {
 

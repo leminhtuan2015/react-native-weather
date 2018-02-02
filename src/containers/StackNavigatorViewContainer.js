@@ -1,14 +1,14 @@
 import React  from 'react';
 import { addNavigationHelpers } from 'react-navigation';
 import {connect} from 'react-redux';
-import NavigatorView from '../components/screens/NavigatorView';
+import StackNavigatorView from '../components/screens/StackNavigatorView';
 
 const mapStateToProps = (state) => ({
   nav: state.nav
 });
 
 const NavigatorViewHelper = ({ dispatch, nav }) =>  (
-  <NavigatorView
+  <StackNavigatorView
     navigation={addNavigationHelpers({
         dispatch,
         state: nav
@@ -16,7 +16,7 @@ const NavigatorViewHelper = ({ dispatch, nav }) =>  (
   />
 );
 
-const NavigatorViewContainer = connect(mapStateToProps)(NavigatorViewHelper);
+const StackNavigatorViewContainer = connect(mapStateToProps)(NavigatorViewHelper);
 
 //export default () => (
 //  <Provider store={Store}>
@@ -24,4 +24,4 @@ const NavigatorViewContainer = connect(mapStateToProps)(NavigatorViewHelper);
 //  </Provider>
 //);
 
-export default NavigatorViewContainer
+export default StackNavigatorViewContainer
