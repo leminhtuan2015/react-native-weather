@@ -54,8 +54,6 @@ class Screen2 extends React.Component {
 
 const drawerOnPress = (navigation) => {
   console.log("Drawer Button Pressed: " + JSON.stringify(navigation.state))
-  navigation.navigate('DrawerOpen')
-  return
 
   if (navigation.state.index === 0) {
     navigation.navigate('DrawerOpen')
@@ -64,12 +62,10 @@ const drawerOnPress = (navigation) => {
   }
 }
 
-const getDrawerItem = navigation => (
+const drawerIcon1 = navigation => (
   <NavBarItem
     iconName="bars"
     onPress={() => {
-        navigation.navigate('DrawerOpen');
-        return
       if (navigation.state.index === 0) {
         // check if drawer is not open, then only open it
         navigation.navigate('DrawerOpen');
@@ -93,17 +89,16 @@ const drawerIcon = (navigation) => (<Icon
 const DrawerNavigatorView = DrawerNavigator({
   Screen1: {screen: Screen1},
   Screen2: {screen: Screen2},
- // Screen0: {screen: TabNavigatorView},
+  Screen0: {screen: TabNavigatorView},
 },
 {
-  gesturesEnabled: false,
-  //headerMode: 'none',
-  //headerMode: 'screen',
+  drawerWidth: 200,
+  drawerPosition: "right",
+  initialRouteName: "Screen1",
   navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: 'green'},
-    title: '',
-    gesturesEnabled: false,
-    headerLeft: getDrawerItem(navigation), 
+    title: 'DrawerStackView',
+    headerLeft: drawerIcon1(navigation), 
   })
 });
 
@@ -111,15 +106,14 @@ const DrawerStackView = StackNavigator({
   drawer: { screen: DrawerNavigatorView }
 }, {
   headerMode: 'none',
-  //headerMode: 'float',
   navigationOptions: ({navigation}) => ({
     headerStyle: {backgroundColor: 'green'},
-    title: '',
+    title: 'DrawerStackView',
     gesturesEnabled: false,
-    headerLeft: drawerIcon(navigation), 
+    headerLeft: drawerIcon1(navigation), 
   })
 })
 
-//export default DrawerStackView
-export default DrawerNavigatorView
+export default DrawerStackView
+//export default DrawerNavigatorView
 
