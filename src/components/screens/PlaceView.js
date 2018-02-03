@@ -37,7 +37,7 @@ class DetailView extends Component<{}> {
     
     return {
       headerTitle: '',
-      title: 'Title',
+      title: 'Place',
 		  headerStyle: styleHeader,
 			headerRight: this.headerRight
 		}

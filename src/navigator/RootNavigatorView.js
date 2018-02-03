@@ -10,7 +10,8 @@ const RootNavigatorView = StackNavigator({
   // Default config for all screens
   headerMode: 'none',
   title: 'Main',
-  initialRouteName: 'Drawer'
+  //initialRouteName: 'Drawer'
+  initialRouteName: 'Stack'
 })
 
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from 'react-native-elements'
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
-import * as ActionTypes from "../../constants/ActionTypes"
 
 import {
   Platform,
@@ -11,14 +10,14 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-class RootView extends Component<{}> {
+class TextView extends Component {
 
-view = (
-  <View style={styles.container}>
-    <FormLabel>Name</FormLabel>
-    <FormValidationMessage>Error message</FormValidationMessage>
-  </View>
- )
+  view = (
+    <View style={styles.container}>
+      <FormLabel>Name</FormLabel>
+      <FormValidationMessage>Error message</FormValidationMessage>
+    </View>
+  )
 
  render() {
     return this.view
@@ -40,7 +39,6 @@ view = (
   },
 })
 
+export default TestView
 
-
-export default RootView
 

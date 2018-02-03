@@ -63,7 +63,7 @@ class HomeView extends Component<{}> {
     
     return {
       headerTitle: '',
-      title: 'Title',
+      title: 'Home',
 		  headerStyle: styleHeader,
 			headerRight: this.headerRight
 		}

@@ -4,6 +4,8 @@ import HomeViewContainer from '../../containers/HomeViewContainer';
 import PlaceViewContainer from '../../containers/PlaceViewContainer';
 import AddPlaceViewContainer from '../../containers/AddPlaceViewContainer';
 
+import DrawerNavigatorView from './DrawerNavigatorView';
+
 export const styleHeader = {
   backgroundColor: 'transparent',
   position: 'absolute',
@@ -16,10 +18,11 @@ export const styleHeader = {
 
 const StackNavigatorView = StackNavigator(
   {
+    Drawer: {screen: DrawerNavigatorView},
     HomeView: {
       screen: HomeViewContainer,
-      headerTitle: '',
-      title: 'Title',
+      headerTitle: 'Home',
+      title: 'Home',
       headerStyle: styleHeader,
       headerTintColor: '#ffffff',
     },
@@ -42,7 +45,7 @@ const StackNavigatorView = StackNavigator(
     },
   },
   {
-//  headerMode: 'none',
+  headerMode: 'none',
   }
 );
 

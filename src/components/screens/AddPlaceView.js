@@ -42,7 +42,7 @@ class EditView extends Component<{}> {
     
     return {
       headerTitle: '',
-      title: 'Title',
+      title: 'Add Place',
 		  headerStyle: styleHeader,
 			headerRight: this.headerRight
 		}
