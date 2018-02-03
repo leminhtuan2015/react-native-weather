@@ -1,9 +1,8 @@
 import { StackNavigator } from 'react-navigation';
 
 import HomeViewContainer from '../../containers/HomeViewContainer';
-import DetailViewContainer from '../../containers/DetailViewContainer';
-import EditViewContainer from '../../containers/EditViewContainer';
-import DrawerNavigatorView from './DrawerNavigatorView';
+import PlaceViewContainer from '../../containers/PlaceViewContainer';
+import AddPlaceViewContainer from '../../containers/AddPlaceViewContainer';
 
 export const styleHeader = {
   backgroundColor: 'transparent',
@@ -17,9 +16,6 @@ export const styleHeader = {
 
 const StackNavigatorView = StackNavigator(
   {
-    DrawerNavigatorView: {
-      screen: DrawerNavigatorView
-    },
     HomeView: {
       screen: HomeViewContainer,
       headerTitle: '',
@@ -27,16 +23,16 @@ const StackNavigatorView = StackNavigator(
       headerStyle: styleHeader,
       headerTintColor: '#ffffff',
     },
-    DetailView: {
-      screen: DetailViewContainer,
+    PlaceView: {
+      screen: PlaceViewContainer,
       navigationOptions: {
         headerTitle: 'Places',
         headerStyle: styleHeader,
         headerTintColor: '#ffffff',
       },
     },
-    EditView: {
-      screen: EditViewContainer,
+    AddPlaceView: {
+      screen: AddPlaceViewContainer,
        navigationOptions: {
         headerTitle: 'Add Places',
         headerStyle: styleHeader,
@@ -46,7 +42,7 @@ const StackNavigatorView = StackNavigator(
     },
   },
   {
-  headerMode: 'none',
+//  headerMode: 'none',
   }
 );
 

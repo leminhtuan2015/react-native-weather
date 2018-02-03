@@ -9,72 +9,15 @@ import {
 
 import HomeViewContainer from '../../containers/HomeViewContainer';
 
-class MyHomeScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Home',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('../../resources/images/menu.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
-
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.navigate('Notifications')}
-        title="Go to notifications"
-      />
-    );
-  }
-}
-
-class MyNotificationsScreen extends React.Component {
-  static navigationOptions = {
-    drawerLabel: 'Notifications',
-    drawerIcon: ({ tintColor }) => (
-      <Image
-        source={require('../../resources/images/menu_1.png')}
-        style={[styles.icon, {tintColor: tintColor}]}
-      />
-    ),
-  };
-
-  render() {
-    return (
-      <Button
-        onPress={() => this.props.navigation.goBack()}
-        title="Go back home"
-      />
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 24,
-    height: 24,
-  },
-});
-
 const DrawerNavigatorView = DrawerNavigator({
-  First: {
-    screen: HomeViewContainer
-  },
-  Home: {
-    screen: MyHomeScreen,
-  },
-  Notifications: {
-    screen: MyNotificationsScreen,
-  },
+  HomeView: {screen: HomeViewContainer},
 },
 {
   gesturesEnabled: false
 });
 
-const DrawerNavigation = StackNavigator({
-  Drawer: { screen: DrawerNavigatorView }
+const DrawerStackView = StackNavigator({
+  drawer: { screen: DrawerNavigatorView }
 }, {
   headerMode: 'float',
   navigationOptions: ({navigation}) => ({
@@ -82,8 +25,6 @@ const DrawerNavigation = StackNavigator({
     title: '',
     gesturesEnabled: false,
     headerLeft: <Text onPress={() => {
-      // Coming soon: navigation.navigate('DrawerToggle')
-      // https://github.com/react-community/react-navigation/pull/2492
       if (navigation.state.index === 0) {
         navigation.navigate('DrawerOpen')
       } else {
@@ -93,4 +34,5 @@ const DrawerNavigation = StackNavigator({
   })
 })
 
-export default DrawerNavigation
+export default DrawerStackView
+

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 
-import DetailView from '../components/screens/DetailView.js';
+import PlaceView from '../components/screens/PlaceView.js';
 
 // 'store' is the object from <Provider store={Store}>
 // Provider is given the store as a prop
@@ -18,6 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 //const DetailViewContainer = connect(mapStateToProps, mapDispatchToProps)(DetailView)
-const DetailViewContainer = connect(mapStateToProps)(DetailView)
+const PlaceViewContainer = connect(mapStateToProps)(PlaceView)
 
-export default DetailViewContainer 
+export default PlaceViewContainer 
