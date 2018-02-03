@@ -18,7 +18,9 @@ export const styleHeader = {
 
 const StackNavigatorView = StackNavigator(
   {
-    Drawer: {screen: DrawerNavigatorView},
+    Drawer: {
+      screen: DrawerNavigatorView
+    },
     HomeView: {
       screen: HomeViewContainer,
       headerTitle: 'Home',

@@ -64,6 +64,7 @@ class HomeView extends Component<{}> {
     return {
       headerTitle: '',
       title: 'Home',
+      headerTintColor: 'white',
 		  headerStyle: styleHeader,
 			headerRight: this.headerRight
 		}
