@@ -12,6 +12,9 @@ import {
   Icon,
 } from 'react-native-elements'
 
+import TabNavigatorView from './TabNavigatorView';
+import NavBarItem from '../views/NavBarItem';
+
 class Screen1 extends React.Component {
   static navigationOptions = {
     drawerLabel: 'Screen 1',
@@ -49,15 +52,11 @@ class Screen2 extends React.Component {
   }
 }
 
-const DrawerNavigatorView = DrawerNavigator({
-  Screen1: {screen: Screen1},
-  Screen2: {screen: Screen2},
-},
-{
-  gesturesEnabled: false
-});
-
 const drawerOnPress = (navigation) => {
+  console.log("Drawer Button Pressed: " + JSON.stringify(navigation.state))
+  navigation.navigate('DrawerOpen')
+  return
+
   if (navigation.state.index === 0) {
     navigation.navigate('DrawerOpen')
   } else {
@@ -65,14 +64,48 @@ const drawerOnPress = (navigation) => {
   }
 }
 
+const getDrawerItem = navigation => (
+  <NavBarItem
+    iconName="bars"
+    onPress={() => {
+        navigation.navigate('DrawerOpen');
+        return
+      if (navigation.state.index === 0) {
+        // check if drawer is not open, then only open it
+        navigation.navigate('DrawerOpen');
+      } else {
+        // else close the drawer
+        navigation.navigate('DrawerClose');
+      }
+    }}
+  />
+);
+
 const drawerIcon = (navigation) => (<Icon 
   name="menu"
-  style={{marginLeft: 30}}
+  marginLeft={30}
   size={30}
   color='#ffffff'
   underlayColor="transparent"
   onPress={() => drawerOnPress(navigation)} 
   />)
+
+const DrawerNavigatorView = DrawerNavigator({
+  Screen1: {screen: Screen1},
+  Screen2: {screen: Screen2},
+ // Screen0: {screen: TabNavigatorView},
+},
+{
+  gesturesEnabled: false,
+  //headerMode: 'none',
+  //headerMode: 'screen',
+  navigationOptions: ({navigation}) => ({
+    headerStyle: {backgroundColor: 'green'},
+    title: '',
+    gesturesEnabled: false,
+    headerLeft: getDrawerItem(navigation), 
+  })
+});
 
 const DrawerStackView = StackNavigator({
   drawer: { screen: DrawerNavigatorView }
@@ -87,5 +120,6 @@ const DrawerStackView = StackNavigator({
   })
 })
 
-export default DrawerStackView
+//export default DrawerStackView
+export default DrawerNavigatorView
 

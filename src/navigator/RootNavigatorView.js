@@ -1,7 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 
 import StackNavigatorView from '../components/screens/StackNavigatorView';
-import DrawerNavigatorView from '../components/screens/DrawerNavigatorView';
 
 const RootNavigatorView = StackNavigator({
   Stack: { screen: StackNavigatorView },
