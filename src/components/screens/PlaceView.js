@@ -57,7 +57,7 @@ class DetailView extends Component<{}> {
   rightButtonOnPress = () => {
     console.log("Right button Pressed") 
 
-    this.props.navigation.navigate('EditView') 
+    this.props.navigation.navigate('AddPlaceView') 
   }
 
   onPressButton = (place) => {

@@ -79,7 +79,7 @@ class HomeView extends Component<{}> {
   rightButtonOnPress = () => {
     console.log("Right button Pressed") 
 
-    this.props.navigation.navigate('DetailView') 
+    this.props.navigation.navigate('PlaceView') 
   }
 
   hourTempForecast = () => {
