@@ -45,7 +45,7 @@ const StackNavigatorView = StackNavigator(
     },
   },
   {
-  headerMode: 'none',
+    //headerMode: 'none',
   }
 );
 
